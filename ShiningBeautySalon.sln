@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiningBeautySalon.API", "ShiningBeautySalon.API\ShiningBeautySalon.API.csproj", "{69901556-1E78-4642-958E-15846CE1ABFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShiningBeautySalon.API", "ShiningBeautySalon.API\ShiningBeautySalon.API.csproj", "{69901556-1E78-4642-958E-15846CE1ABFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiningBeautySalon.Domain", "ShiningBeautySalon.Domain\ShiningBeautySalon.Domain.csproj", "{2C6FCEA8-A867-4979-98C0-3BF0FDE91567}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShiningBeautySalon.Domain", "ShiningBeautySalon.Domain\ShiningBeautySalon.Domain.csproj", "{2C6FCEA8-A867-4979-98C0-3BF0FDE91567}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiningBeautySalon.Service", "ShiningBeautySalon.Service\ShiningBeautySalon.Service.csproj", "{A949F7E4-59C8-4833-9408-B33334F97E1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShiningBeautySalon.Service", "ShiningBeautySalon.Service\ShiningBeautySalon.Service.csproj", "{A949F7E4-59C8-4833-9408-B33334F97E1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiningBeautySalon.DAL", "ShiningBeautySalon.DAL\ShiningBeautySalon.DAL.csproj", "{B5BB7CB5-71F7-4E97-9A80-13E072152F7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{A949F7E4-59C8-4833-9408-B33334F97E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A949F7E4-59C8-4833-9408-B33334F97E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A949F7E4-59C8-4833-9408-B33334F97E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5BB7CB5-71F7-4E97-9A80-13E072152F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5BB7CB5-71F7-4E97-9A80-13E072152F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5BB7CB5-71F7-4E97-9A80-13E072152F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5BB7CB5-71F7-4E97-9A80-13E072152F7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
