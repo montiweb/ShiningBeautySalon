@@ -10,5 +10,15 @@ namespace ShiningBeautySalon.API.Controllers
     [Route("[controller]")]
     public class SalonController : ControllerBase
     {
+        public SalonController()
+        {
+
+        }
+
+        [HttpGet]
+        public string Get()
+        {
+            return "Return Data From Context";
+        }
     }
 }
