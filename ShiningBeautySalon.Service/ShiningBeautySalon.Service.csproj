@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ShiningBeautySalon.DAL\ShiningBeautySalon.DAL.csproj" />
     <ProjectReference Include="..\ShiningBeautySalon.Domain\ShiningBeautySalon.Domain.csproj" />
   </ItemGroup>
 

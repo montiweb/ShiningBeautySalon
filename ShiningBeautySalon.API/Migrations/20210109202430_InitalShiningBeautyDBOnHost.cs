@@ -2,7 +2,7 @@
 
 namespace ShiningBeautySalon.API.Migrations
 {
-    public partial class InitialShiningBeautySalonDB : Migration
+    public partial class InitalShiningBeautyDBOnHost : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

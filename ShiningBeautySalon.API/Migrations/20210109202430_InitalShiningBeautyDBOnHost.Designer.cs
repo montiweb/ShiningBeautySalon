@@ -9,8 +9,8 @@ using ShiningBeautySalon.DAL.Context;
 namespace ShiningBeautySalon.API.Migrations
 {
     [DbContext(typeof(ShiningContext))]
-    [Migration("20210109165215_InitialShiningBeautySalonDB")]
-    partial class InitialShiningBeautySalonDB
+    [Migration("20210109202430_InitalShiningBeautyDBOnHost")]
+    partial class InitalShiningBeautyDBOnHost
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
