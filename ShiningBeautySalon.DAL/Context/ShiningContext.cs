@@ -8,6 +8,12 @@ namespace ShiningBeautySalon.DAL.Context
 {
     public class ShiningContext : DbContext
     {
+        public ShiningContext(DbContextOptions options)
+               : base(options)
+        {
+
+        }
+
         public DbSet<Level> Levels { get; set; }
         public DbSet<Salon> Salons { get; set; }
         public DbSet<ServiceCategory> ServiceCategories { get; set; }
