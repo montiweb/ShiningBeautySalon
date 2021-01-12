@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShiningBeautySalon.Domain",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShiningBeautySalon.Service", "ShiningBeautySalon.Service\ShiningBeautySalon.Service.csproj", "{A949F7E4-59C8-4833-9408-B33334F97E1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiningBeautySalon.DAL", "ShiningBeautySalon.DAL\ShiningBeautySalon.DAL.csproj", "{B5BB7CB5-71F7-4E97-9A80-13E072152F7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShiningBeautySalon.DAL", "ShiningBeautySalon.DAL\ShiningBeautySalon.DAL.csproj", "{B5BB7CB5-71F7-4E97-9A80-13E072152F7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiningBeautySalon.WebReact", "ShiningBeautySalon.WebReact\ShiningBeautySalon.WebReact.csproj", "{254D0FF1-7F8C-4F87-9C0C-0702454CBFDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B5BB7CB5-71F7-4E97-9A80-13E072152F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5BB7CB5-71F7-4E97-9A80-13E072152F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5BB7CB5-71F7-4E97-9A80-13E072152F7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{254D0FF1-7F8C-4F87-9C0C-0702454CBFDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{254D0FF1-7F8C-4F87-9C0C-0702454CBFDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{254D0FF1-7F8C-4F87-9C0C-0702454CBFDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{254D0FF1-7F8C-4F87-9C0C-0702454CBFDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

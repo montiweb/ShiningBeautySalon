@@ -17,6 +17,7 @@ namespace ShiningBeautySalon.API
 {
     public class Startup
     {
+        private readonly string AllowedOrigins = "_Origins"; 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,6 +28,18 @@ namespace ShiningBeautySalon.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(AllowedOrigins, builder =>
+                {
+                    builder
+                        .WithOrigins(Configuration.GetSection("AllowOrigin").Value.Split(";"))
+                        .SetIsOriginAllowedToAllowWildcardSubdomains()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
             services.AddControllers();
 
             services.AddDbContext<ShiningContext>(options =>
@@ -40,13 +53,13 @@ namespace ShiningBeautySalon.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(AllowedOrigins);
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
+            //app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
