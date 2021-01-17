@@ -8,15 +8,12 @@ namespace ShiningBeautySalon.DAL.Context
 {
     public class ShiningContext : DbContext
     {
-        public ShiningContext(DbContextOptions options)
-               : base(options)
-        {
-
-        }
         public ShiningContext()
-               : base()
         {
-
+        }
+        public ShiningContext(DbContextOptions<ShiningContext> options)
+              : base(options)
+        {
         }
 
         public DbSet<Level> Levels { get; set; }
@@ -24,8 +21,5 @@ namespace ShiningBeautySalon.DAL.Context
         public DbSet<ServiceCategory> ServiceCategories { get; set; }
         public DbSet<ServiceItem> ServiceItems { get; set; }
         public DbSet<Staff> Staffs { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        { }
     }
 }

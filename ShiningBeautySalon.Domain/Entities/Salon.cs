@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ShiningBeautySalon.Domain.Entities
 {
+    //[Table("Salons", Schema="dbo")]
     public class Salon
     {
         public int ID { get; set; }

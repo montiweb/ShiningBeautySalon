@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShiningBeautySalon.Domain.Entities;
+using ShiningBeautySalon.Service.Interfaces;
 using ShiningBeautySalon.Service.Services;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,14 @@ namespace ShiningBeautySalon.API.Controllers
     [Route("[controller]")]
     public class SalonController : ControllerBase
     {
-        private readonly SalonService salonService;
-        public SalonController()
+        private readonly ISalonService salonService;
+        public SalonController(ISalonService salonServ)
         {
-            salonService = new SalonService();
+            salonService = salonServ;
         }
 
         [HttpGet]
-        public List<Salon> Get()
+        public ActionResult<IList<Salon>> Get()
         {
             return salonService.Get().ToList();
         }

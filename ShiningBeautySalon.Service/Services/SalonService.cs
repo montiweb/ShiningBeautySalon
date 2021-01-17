@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShiningBeautySalon.DAL.Context;
 using ShiningBeautySalon.Domain.Entities;
+using ShiningBeautySalon.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,22 +9,21 @@ using System.Text;
 
 namespace ShiningBeautySalon.Service.Services
 {
-    public class SalonService
+    public class SalonService : ISalonService
     {
-       // protected DbContextOptionsBuilder Builder { get; set; }
-       // protected ShiningContext Context { get; set; }
+        private readonly ShiningContext _context;
 
-        public SalonService()
+        public SalonService(ShiningContext ctx)
         {
-         //   Context = new ShiningContext();
+            _context = ctx;
         }
+
+        public IList<Salon> Salons;
 
         public IList<Salon> Get()
         {
-            using (var context =  new ShiningContext())
-            {
-                return context.Salons.ToList();
-            }                
+            Salons = _context.Salons.ToList();
+            return Salons;
         }
     }
 }

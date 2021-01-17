@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ShiningBeautySalon.DAL.Context;
+using ShiningBeautySalon.Service.Interfaces;
+using ShiningBeautySalon.Service.Services;
 
 namespace ShiningBeautySalon.API
 {
@@ -30,7 +32,11 @@ namespace ShiningBeautySalon.API
             services.AddControllers();
 
             services.AddDbContext<ShiningContext>(options =>
-           options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("ShiningBeautySalon.API")));
+           {
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("ShiningBeautySalon.API"));
+           });
+
+            services.AddScoped<ISalonService, SalonService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
