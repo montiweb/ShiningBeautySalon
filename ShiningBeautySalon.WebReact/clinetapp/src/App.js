@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
 function App() {
     const [list, setList] = useState([])
     const CallTest = async () => { 
-        var response = await http.get(`http://api.shiningbeautysalon.com/Staff`);
+        var response = await http.get(`http://api.shiningbeautysalon.com/Salon`);
+        //var response = await http.get(`https://localhost:44355/Salon`);
         setList(response.data)
     }
     const click = () => {
@@ -14,7 +15,7 @@ function App() {
     } 
     return (
         <div className="App">
-            <p>This is Staff Data</p>
+            <p>This is Salon Data</p>
 
             <button onClick={click}>Click ME</button>
             {
@@ -25,6 +26,7 @@ function App() {
                         {item.about}
                         {item.slogan}
                         {item.logo}
+                        {item.phone}
                         {item.url}</div>
                  ): <></>
             }
