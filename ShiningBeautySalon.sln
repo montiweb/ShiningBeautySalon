@@ -11,7 +11,28 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShiningBeautySalon.Service"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShiningBeautySalon.DAL", "ShiningBeautySalon.DAL\ShiningBeautySalon.DAL.csproj", "{B5BB7CB5-71F7-4E97-9A80-13E072152F7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiningBeautySalon.WebReact", "ShiningBeautySalon.WebReact\ShiningBeautySalon.WebReact.csproj", "{254D0FF1-7F8C-4F87-9C0C-0702454CBFDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShiningBeautySalon.WebReact", "ShiningBeautySalon.WebReact\ShiningBeautySalon.WebReact.csproj", "{254D0FF1-7F8C-4F87-9C0C-0702454CBFDE}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ShiningBeautySalon-WebAngular", "ShiningBeautySalon-WebAngular\", "{9921B7B3-8FEB-4123-95F6-7CABEC5ADBE8}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_57497"
+		Debug.AspNetCompiler.PhysicalPath = "ShiningBeautySalon-WebAngular\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57497\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_57497"
+		Release.AspNetCompiler.PhysicalPath = "ShiningBeautySalon-WebAngular\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57497\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "57497"
+		SlnRelativePath = "ShiningBeautySalon-WebAngular\"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +60,10 @@ Global
 		{254D0FF1-7F8C-4F87-9C0C-0702454CBFDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{254D0FF1-7F8C-4F87-9C0C-0702454CBFDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{254D0FF1-7F8C-4F87-9C0C-0702454CBFDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9921B7B3-8FEB-4123-95F6-7CABEC5ADBE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9921B7B3-8FEB-4123-95F6-7CABEC5ADBE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9921B7B3-8FEB-4123-95F6-7CABEC5ADBE8}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{9921B7B3-8FEB-4123-95F6-7CABEC5ADBE8}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
