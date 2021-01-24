@@ -10,7 +10,7 @@ export class SalonService {
   constructor(private http: HttpClient) { }
 
   get(): Observable<any[]> {
-    //return this.http.get<any[]>(`http://api.shiningbeautysalon.com/Salon`);
-    return this.http.get<any[]>(`https://localhost:44355/Salon`);
+    return this.http.get<any[]>(`http://api.shiningbeautysalon.com/Salon`);
+    //return this.http.get<any[]>(`https://localhost:44355/Salon`);
   }
 }
