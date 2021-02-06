@@ -10,6 +10,7 @@ import { SalonService } from './salon.service';
 import { LayoutModule } from './layout/layout.module';
 import { LoginModule } from './modules/login/login.module';
 import { PanelModule } from './modules/panel/panel.module';
+import { HomeModule } from './modules/home/home.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PanelModule } from './modules/panel/panel.module';
     HttpClientModule,
     LayoutModule,
     LoginModule,
-    PanelModule
+    PanelModule,
+    HomeModule
   ],
   providers: [
     SalonService

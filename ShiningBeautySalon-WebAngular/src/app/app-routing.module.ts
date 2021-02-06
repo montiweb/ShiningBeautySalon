@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginLayoutComponent } from './layout/layout-login/login-layout/login-layout.component';
 import { MainLayoutComponent } from './layout/layout-main/main-layout/main-layout.component';
 import { PanelLayoutComponent } from './layout/layout-panel/panel-layout/panel-layout.component';
+import { HomePageComponent } from './modules/home/home-components/home-page.component';
 import { LoginFormComponent } from './modules/login/login-components/login-form.component';
 import { PanelFormComponent } from './modules/panel/panel-components/panel-form.component';
 
@@ -14,17 +15,17 @@ const routes: Routes = [
     children: [
       {
         path: 'index',
-        component: MainLayoutComponent,
+        component: HomePageComponent,
         pathMatch: 'full'
       },
       {
         path: 'home',
-        component: MainLayoutComponent,
+        component: HomePageComponent,
         pathMatch: 'full'
       },
       {
         path: '',
-        component: MainLayoutComponent,
+        component: HomePageComponent,
         pathMatch: 'full'
       }
     ]
