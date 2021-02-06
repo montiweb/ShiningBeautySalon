@@ -16,6 +16,7 @@ namespace ShiningBeautySalon.DAL.Context
         {
         }
 
+        public DbSet<User> Users { get; set; }
         public DbSet<Level> Levels { get; set; }
         public DbSet<Salon> Salons { get; set; }
         public DbSet<ServiceCategory> ServiceCategories { get; set; }

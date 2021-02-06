@@ -20,9 +20,6 @@ namespace ShiningBeautySalon.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IList<Salon>> Get()
-        {
-            return salonService.Get().ToList();
-        }
+        public ActionResult<IList<Salon>> Get() => salonService.Get().ToList(); 
     }
 }
