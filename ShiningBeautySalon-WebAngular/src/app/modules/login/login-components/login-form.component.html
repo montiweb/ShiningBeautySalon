@@ -1,1 +1,26 @@
-<p>login-form works!</p>
+<div className="login-page">
+  <div className="container pt-5">
+    <div className="row justify-content-center">
+      <div className="col col-md-6">
+        <div className="card login-card">
+          <div className="card-header">
+            <h3>Login</h3>
+          </div>
+          <div className="card-body login-card-body">
+            <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+              <div class="form-group">
+                <input id="username" name="username" type="text" class="form-control bottomBorder" placeholder="User Name" required [(ngModel)]="username" autofocus="autofocus">
+              </div>
+              <div class="form-group">
+                <input id="password" name="password" type="password" class="form-control bottomBorder" placeholder="Password" required [(ngModel)]="password">
+              </div>
+              <div>
+                <button class="btn btn-primary btn-block">Login In</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

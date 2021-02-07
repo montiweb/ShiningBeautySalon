@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { SalonService } from './salon.service';
 import { LayoutModule } from './layout/layout.module';
 import { LoginModule } from './modules/login/login.module';
 import { PanelModule } from './modules/panel/panel.module';
@@ -25,9 +24,7 @@ import { HomeModule } from './modules/home/home.module';
     PanelModule,
     HomeModule
   ],
-  providers: [
-    SalonService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

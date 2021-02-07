@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-panel-form',
@@ -8,14 +8,22 @@ import { Router } from '@angular/router';
 })
 export class PanelFormComponent implements OnInit {
 
-  panelAuthenticate = false;
+  panelAuthenticate: number;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    //if (!this.panelAuthenticate) {
-    //  this.router.navigate(['/login']);
-    //}
+
+    this.panelAuthenticate = parseInt(this.route.snapshot.params['panelAuthenticate']);
+
+    if (this.panelAuthenticate === 0) {
+      this.router.navigate(['/login']);
+    }
+    else {
+      this.router.navigate(['/panel']);
+    }
   }
 
 }
