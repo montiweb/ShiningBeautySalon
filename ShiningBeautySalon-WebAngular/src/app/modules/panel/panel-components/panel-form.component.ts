@@ -22,7 +22,7 @@ export class PanelFormComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     else {
-      this.router.navigate(['/panel']);
+      this.router.navigate(['/panel/1']);
     }
   }
 

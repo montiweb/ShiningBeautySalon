@@ -6,7 +6,7 @@ using ShiningBeautySalon.Service.Interfaces;
 namespace ShiningBeautySalon.API.Controllers
 {
 
-    [Route("Login/[action]")]
+    [Route("Authentication/[action]")]
     [ApiController]
     [AllowAnonymous]
     public class AuthenticationController : ControllerBase
