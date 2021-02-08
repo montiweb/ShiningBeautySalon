@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LoginLayoutComponent } from './layout/layout-login/login-layout/login-layout.component';
 import { MainLayoutComponent } from './layout/layout-main/main-layout/main-layout.component';
 import { PanelLayoutComponent } from './layout/layout-panel/panel-layout/panel-layout.component';
 import { HomePageComponent } from './modules/home/home-components/home-page.component';
