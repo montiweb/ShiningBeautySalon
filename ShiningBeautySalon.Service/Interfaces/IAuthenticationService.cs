@@ -5,8 +5,8 @@ using System.Text;
 
 namespace ShiningBeautySalon.Service.Interfaces
 {
-    public interface ILoginService
+    public interface IAuthenticationService
     {
-        User SignIn(string username, string password);
+        User Login(string username, string password);
     }
 }

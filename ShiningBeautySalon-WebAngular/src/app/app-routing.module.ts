@@ -42,17 +42,8 @@ const routes: Routes = [
     ]
   },
   {
-    path: '',
-    component: LoginLayoutComponent,
-    // canActivate: [AuthGuardService],
-    children: [
-      {
-        path: 'login',
-        component: LoginFormComponent,
-        //canActivate: [AuthGuardService],
-        pathMatch: 'full'
-      }
-    ]
+    path: 'login',
+    component: LoginFormComponent
   }
 ];
 

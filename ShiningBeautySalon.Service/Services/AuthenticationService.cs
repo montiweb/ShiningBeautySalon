@@ -8,11 +8,11 @@ using System.Text;
 
 namespace ShiningBeautySalon.Service.Services
 {
-    public class LoginService : ILoginService
+    public class AuthenticationService : IAuthenticationService
     {
         private readonly ShiningContext _context;
 
-        public LoginService(ShiningContext ctx)
+        public AuthenticationService(ShiningContext ctx)
         {
             _context = ctx;
         }
@@ -22,7 +22,7 @@ namespace ShiningBeautySalon.Service.Services
         new User(){ ID = 2 ,Password="123456" , Username="Moein" }
         };
 
-        public User SignIn(string username, string password)
+        public User Login(string username, string password)
         {
             var user = Users.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
             return user;
