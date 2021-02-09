@@ -12,11 +12,12 @@ export class AuthenticationService {
 
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`https://localhost:44355/Authentication/Login`, null,
+    return this.http.post<any>(`http://api.shiningbeautysalon.com/Authentication/Login`, null,
+    //return this.http.post<any>(`https://localhost:44355/Authentication/Login`, null,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
-        }),         
+        }),
         params: { username: username, password: password }
       },
     );
