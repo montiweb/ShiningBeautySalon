@@ -1,11 +1,12 @@
-﻿import React, {useState} from 'react';
-import {useHistory } from 'react-router-dom'; 
-import authenticationService from '../../services/authenticationService';
-import FormButton from '../../shared/comps/Button';
-import Textbox from '../../shared/comps/Textbox';
-import navigation from '../../utility/navigation';
-import Strings from '../../utility/strings';
-const Login = () => {
+﻿import React, { useState } from 'react'; 
+import { useHistory } from 'react-router-dom';
+import FormButton from '../../../shared/comps/Button';
+import Textbox from '../../../shared/comps/Textbox';
+import navigation from '../../core/navigation';
+import AuthenticationService from '../../core/services/authenticationService';
+import Strings from '../../core/strings';
+
+const LoginLayout = () => {
     const history = useHistory();
     //UseState
     const [username, setUsername] = useState("")
@@ -21,18 +22,18 @@ const Login = () => {
             Username: username,
             Password: password
         }
-        const res = await authenticationService.login(dataSet);
+        const res = await AuthenticationService.login(dataSet);
         if (res) history.push(`${navigation.panel}`)
         else alert("User Not Found")
-        
+
     }
 
     const _onClickCancel = () => {
         history.push("/")
     }
 
-    return ( 
-         <div className="login-page"> 
+    return (
+        <div className="login-page">
             <div className="container pt-5">
                 <div className="row justify-content-center">
                     <div className="col col-md-6">
@@ -65,10 +66,10 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
         </div>
-       
+
     )
 }
 
-export default Login;
+export default LoginLayout; 

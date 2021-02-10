@@ -1,5 +1,5 @@
 ﻿import React, { useState } from 'react';
-import enums from "../../utility/enum"
+import enums from "../../app/core/enum";
 import { Button } from 'primereact/button';
 
 const FormButton = (props) => { 

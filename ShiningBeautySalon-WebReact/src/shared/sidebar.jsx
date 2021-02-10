@@ -1,6 +1,6 @@
-﻿import React, { useState } from 'react'
-import { Link } from 'react-router-dom'; 
-import Strings from '../utility/strings';
+﻿import React from 'react'
+import { Link } from 'react-router-dom';  
+import Strings from '../app/core/strings';
 
 const Sidebar = () => {
     return (
