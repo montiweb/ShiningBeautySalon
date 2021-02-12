@@ -20,7 +20,7 @@ let instance = Axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-    //config.headers.apiKey = "5E5AE551-D93E-4801-BC02-22A5CEB71F08";
+    config.headers.apiKey = "5E5AE551-D93E-4801-BC02-22A5CEB71F08";
     return config;
 }, error => {
     return error
