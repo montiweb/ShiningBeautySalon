@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,9 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShiningBeautySalon.DAL\ShiningBeautySalon.DAL.csproj" />
-    <ProjectReference Include="..\ShiningBeautySalon.DependencyResolver\ShiningBeautySalon.DependencyResolver.csproj" />
     <ProjectReference Include="..\ShiningBeautySalon.Service\ShiningBeautySalon.Service.csproj" />
   </ItemGroup>
-
 
 </Project>

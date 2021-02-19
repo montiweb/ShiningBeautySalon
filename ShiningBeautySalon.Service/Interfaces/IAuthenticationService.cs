@@ -1,12 +1,10 @@
-﻿using ShiningBeautySalon.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
+using ShiningBeautySalon.Domain.Entities;
 
 namespace ShiningBeautySalon.Service.Interfaces
 {
     public interface IAuthenticationService
     {
-        User Login(string username, string password);
+      
     }
 }

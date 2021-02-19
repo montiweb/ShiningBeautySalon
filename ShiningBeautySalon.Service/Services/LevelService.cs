@@ -7,65 +7,66 @@ using ShiningBeautySalon.Service.Interfaces;
 
 namespace ShiningBeautySalon.Service.Services
 {
-    public class SalonService : ISalonService
+    public class LevelService : ILevelService
     {
         private readonly ShiningUnitOfWork _shiningUnitOfWork;
-        public SalonService(ShiningUnitOfWork shiningUnitOfWork)
+        public LevelService(ShiningUnitOfWork shiningUnitOfWork)
         {
             _shiningUnitOfWork = shiningUnitOfWork;
         }
 
-        public IResponse<Salon> Add(Salon model)
+        public IResponse<Level> Add(Level model)
         {
-            _shiningUnitOfWork.SalonRepository.Add(model);
+            _shiningUnitOfWork.LevelRepository.Add(model);
             _shiningUnitOfWork.SaveChanges();
-            return new Response<Salon>
+            return new Response<Level>
             {
                 IsSuccessful = true,
                 Result = model
             };
         }
 
-        public IResponse<Salon> Update(Salon model)
+        public IResponse<Level> Update(Level model)
         {
-            _shiningUnitOfWork.SalonRepository.Update(model);
+            _shiningUnitOfWork.LevelRepository.Update(model);
             _shiningUnitOfWork.SaveChanges();
-            return new Response<Salon>
+            return new Response<Level>
             {
                 IsSuccessful = true,
                 Result = model
             };
         }
 
-        public IResponse<Salon> Delete(Salon model)
+        public IResponse<Level> Delete(Level model)
         {
-            _shiningUnitOfWork.SalonRepository.Remove(model);
+            _shiningUnitOfWork.LevelRepository.Remove(model);
             _shiningUnitOfWork.SaveChanges();
-            return new Response<Salon>
+            return new Response<Level>
             {
                 IsSuccessful = true,
                 Result = model
             };
         }
 
-        public IResponse<List<Salon>> GetAll()
+        public IResponse<List<Level>> GetAll()
         {
-            var response = _shiningUnitOfWork.SalonRepository.Get().ToList();
-            return new Response<List<Salon>>
+            var response = _shiningUnitOfWork.LevelRepository.Get().ToList();
+            return new Response<List<Level>>
             {
                 IsSuccessful = true,
                 Result = response
             };
         }
 
-        public IResponse<Salon> GetByID(int salonId)
+        public IResponse<Level> GetByID(int levelId)
         {
-            var response = _shiningUnitOfWork.SalonRepository.Find(x => x.ID == salonId).FirstOrDefault();
-            return new Response<Salon>
+            var response = _shiningUnitOfWork.LevelRepository.Find(x => x.ID == levelId).FirstOrDefault();
+            return new Response<Level>
             {
                 IsSuccessful = true,
                 Result = response
             };
         }
+
     }
 }

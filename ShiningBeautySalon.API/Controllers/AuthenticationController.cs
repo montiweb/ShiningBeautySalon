@@ -11,13 +11,13 @@ namespace ShiningBeautySalon.API.Controllers
     [AllowAnonymous]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IAuthenticationService _authService;
-        public AuthenticationController(IAuthenticationService authService)
+        private readonly IAuthenticationService _authenticationService;
+        public AuthenticationController(IAuthenticationService authenticationService)
         {
-            _authService = authService;
+            _authenticationService = authenticationService;
         }
 
         [HttpPost]
-        public ActionResult<User> Login(string username, string password) => _authService.Login(username, password);
+        public ActionResult<User> Login(string username, string password) => _authenticationService.Login(username, password);
     }
 }

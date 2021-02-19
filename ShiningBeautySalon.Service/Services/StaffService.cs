@@ -1,21 +1,71 @@
-﻿using ShiningBeautySalon.Domain.Entities;
-using System;
+﻿using System.Linq;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using ShiningBeautySalon.Core.Model;
+using ShiningBeautySalon.DAL.UnitOfWork;
+using ShiningBeautySalon.Domain.Entities;
+using ShiningBeautySalon.Service.Interfaces;
 
 namespace ShiningBeautySalon.Service.Services
 {
-    public class StaffService
+    public class StaffService : IStaffService
     {
-        List<Salon> Salons = new List<Salon> {
-        new Salon { ID=1, Name="Monti Salon1", Address ="17 Barberry", Phone="4168245637", About="About Monti1", Slogan="Slogan Monti1", Logo="Monti Logo1", Url="MontiWebSolution.com"},
-        new Salon { ID=2, Name="Monti Salon2", Address ="27 Barberry", Phone="4168333333", About="About Monti2", Slogan="Slogan Monti2", Logo="Monti Logo2", Url="MontiWebSolution.com"}
-        };
-
-        public IList<Salon> GetAll()
+        private readonly ShiningUnitOfWork _shiningUnitOfWork;
+        public StaffService(ShiningUnitOfWork shiningUnitOfWork)
         {
-            return Salons;
+            _shiningUnitOfWork = shiningUnitOfWork;
+        }
+
+        public IResponse<Staff> Add(Staff model)
+        {
+            _shiningUnitOfWork.StaffRepository.Add(model);
+            _shiningUnitOfWork.SaveChanges();
+            return new Response<Staff>
+            {
+                IsSuccessful = true,
+                Result = model
+            };
+        }
+
+        public IResponse<Staff> Update(Staff model)
+        {
+            _shiningUnitOfWork.StaffRepository.Update(model);
+            _shiningUnitOfWork.SaveChanges();
+            return new Response<Staff>
+            {
+                IsSuccessful = true,
+                Result = model
+            };
+        }
+
+        public IResponse<Staff> Delete(Staff model)
+        {
+            _shiningUnitOfWork.StaffRepository.Remove(model);
+            _shiningUnitOfWork.SaveChanges();
+            return new Response<Staff>
+            {
+                IsSuccessful = true,
+                Result = model
+            };
+        }
+
+        public IResponse<List<Staff>> GetAll()
+        {
+            var response = _shiningUnitOfWork.StaffRepository.Get().ToList();
+            return new Response<List<Staff>>
+            {
+                IsSuccessful = true,
+                Result = response
+            };
+        }
+
+        public IResponse<Staff> GetByID(int staffId)
+        {
+            var response = _shiningUnitOfWork.StaffRepository.Find(x => x.ID == staffId).FirstOrDefault();
+            return new Response<Staff>
+            {
+                IsSuccessful = true,
+                Result = response
+            };
         }
     }
 }

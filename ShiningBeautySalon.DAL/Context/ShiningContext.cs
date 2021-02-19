@@ -1,12 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShiningBeautySalon.Core.Context; 
 using ShiningBeautySalon.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ShiningBeautySalon.DAL.Context
 {
-    public class ShiningContext : DbContext
+    public class ShiningContext : CoreDbContext
     {
         public ShiningContext()
         {
