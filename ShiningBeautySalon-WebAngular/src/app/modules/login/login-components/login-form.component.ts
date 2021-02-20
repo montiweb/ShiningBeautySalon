@@ -7,6 +7,8 @@ import { AuthenticationService } from '../../../core/api-service/authentication.
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
+  //To register our service for a specific component
+  //, providers: [AuthenticationService]
 })
 export class LoginFormComponent implements OnInit {
 
