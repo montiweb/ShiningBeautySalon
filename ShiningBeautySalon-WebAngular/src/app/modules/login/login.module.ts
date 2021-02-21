@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { LoginFormComponent } from './login-components/login-form.component';
 
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+
 
 
 @NgModule({
@@ -12,7 +15,9 @@ import { LoginFormComponent } from './login-components/login-form.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ButtonModule,
+    InputTextModule
   ]
 })
 export class LoginModule { }
