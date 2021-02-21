@@ -100,7 +100,7 @@ namespace ShiningBeautySalon.Core.Repository
             return _dbSet.Where(predicate).SingleOrDefault();
         } 
 
-        public void UpdateEntity(T entityToUpdate)
+        public void Update(T entityToUpdate)
         {
             _dbSet.Attach(entityToUpdate);
             _context.Entry(entityToUpdate).State = EntityState.Modified;
