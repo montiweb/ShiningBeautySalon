@@ -1,15 +1,8 @@
-﻿using System.Collections.Generic;
-using ShiningBeautySalon.Core.Model;
-using ShiningBeautySalon.Domain.Entities;
+﻿using ShiningBeautySalon.Domain.Entities;
 
 namespace ShiningBeautySalon.Service.Interfaces
 {
-    public interface IServiceCategoryService
+    public interface IServiceCategoryService : IBaseService<ServiceCategory>
     {
-        IResponse<ServiceCategory> Add(ServiceCategory model);
-        IResponse<ServiceCategory> Update(ServiceCategory model);
-        IResponse<ServiceCategory> Delete(ServiceCategory model);
-        IResponse<List<ServiceCategory>> GetAll();
-        IResponse<ServiceCategory> GetByID(int serviceCategoryId);
     }
 }
