@@ -14,6 +14,12 @@ namespace ShiningBeautySalon.API.Controllers
             _staffService = staffService;
         }
 
+        [HttpGet]
+        public IActionResult GetAll() => Ok(_staffService.GetAll());
+
+        [HttpGet]
+        public IActionResult GetByID(int staffId) => Ok(_staffService.GetByID(staffId));
+
         [HttpPost]
         public IActionResult Add(Staff model) => Ok(_staffService.Add(model));
 
@@ -22,11 +28,5 @@ namespace ShiningBeautySalon.API.Controllers
 
         [HttpPost]
         public IActionResult Delete(Staff model) => Ok(_staffService.Delete(model));
-
-        [HttpGet]
-        public IActionResult GetAll() => Ok(_staffService.GetAll());
-
-        [HttpGet]
-        public IActionResult GetByID(int staffId) => Ok(_staffService.GetByID(staffId));
     }
 }
