@@ -23,7 +23,7 @@ namespace ShiningBeautySalon.DependencyResolver.Ioc
             services.AddScoped<ShiningContext>();
 
             #region Repository
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GeneralRepository<>));
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             #endregion
 
             #region Services 
