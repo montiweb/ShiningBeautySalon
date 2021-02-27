@@ -12,7 +12,7 @@ namespace ShiningBeautySalon.Core.Repository
            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
            string includeProperties = "");
 
-        TEntity Get(int id);
+        TEntity Get(int ID);
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
         TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);

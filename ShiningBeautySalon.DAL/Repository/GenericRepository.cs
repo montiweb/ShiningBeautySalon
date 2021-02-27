@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using ShiningBeautySalon.Core.Repository;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+using System.Text;
 
-namespace ShiningBeautySalon.Core.Repository
+namespace ShiningBeautySalon.DAL.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
@@ -14,29 +16,6 @@ namespace ShiningBeautySalon.Core.Repository
         {
             _dbSet = context.Set<T>();
             _context = context;
-        }
-
-        public void Add(T entity)
-        {
-            _dbSet.Add(entity);
-            _context.SaveChanges();
-        }
-
-        public void AddRange(IEnumerable<T> entities)
-        {
-            _dbSet.AddRange(entities);
-            _context.SaveChanges();
-        }
-
-        public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
-        {
-            return _dbSet.Where(predicate);
-        }
-         
-
-        public T FirstOrDefault()
-        {
-            return _dbSet.SingleOrDefault();
         }
 
         public IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
@@ -67,17 +46,39 @@ namespace ShiningBeautySalon.Core.Repository
         public T Get(int id)
         {
             return _dbSet.Find(id);
-        } 
+        }
 
         public IEnumerable<T> GetAll()
         {
             return _dbSet.ToList();
         }
 
+        public void Add(T entity)
+        {
+            _dbSet.Add(entity);
+            _context.Entry(entity).State = EntityState.Added;
+        }
+
+        public void AddRange(IEnumerable<T> entities)
+        {
+            _dbSet.AddRange(entities);
+        }
+
+        public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
+        {
+            return _dbSet.Where(predicate);
+        }
+
+
+        public T FirstOrDefault()
+        {
+            return _dbSet.SingleOrDefault();
+        }
+
         public void Remove(T entity)
         {
             _dbSet.Remove(entity);
-            _context.SaveChanges();
+            _context.Entry(entity).State = EntityState.Deleted;
         }
 
         public void RemoveEntity(T entityToDelete)
@@ -87,7 +88,6 @@ namespace ShiningBeautySalon.Core.Repository
                 _dbSet.Attach(entityToDelete);
             }
             _dbSet.Remove(entityToDelete);
-            _context.SaveChanges();
         }
 
         public void RemoveRange(IEnumerable<T> entities)
@@ -98,13 +98,12 @@ namespace ShiningBeautySalon.Core.Repository
         public T SingleOrDefault(Expression<Func<T, bool>> predicate)
         {
             return _dbSet.Where(predicate).SingleOrDefault();
-        } 
+        }
 
         public void Update(T entityToUpdate)
         {
             _dbSet.Attach(entityToUpdate);
             _context.Entry(entityToUpdate).State = EntityState.Modified;
-            _context.SaveChanges();
         }
     }
 }
