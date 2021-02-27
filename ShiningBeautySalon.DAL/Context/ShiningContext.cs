@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ShiningBeautySalon.Core.Context; 
 using ShiningBeautySalon.Domain.Entities;
 
 namespace ShiningBeautySalon.DAL.Context
 {
-    public class ShiningContext : CoreDbContext
+    public class ShiningContext : DbContext
     {
         public ShiningContext()
         {
