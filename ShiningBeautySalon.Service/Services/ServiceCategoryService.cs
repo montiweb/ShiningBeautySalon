@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using ShiningBeautySalon.Core.Model;
 using ShiningBeautySalon.DAL.UnitOfWork;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
+using ShiningBeautySalon.Service.Response;
 
 namespace ShiningBeautySalon.Service.Services
 {
@@ -15,7 +15,7 @@ namespace ShiningBeautySalon.Service.Services
             _shiningUnitOfWork = shiningUnitOfWork;
         }
        
-        public IResponse<ServiceCategory> Add(ServiceCategory model)
+        public Response<ServiceCategory> Add(ServiceCategory model)
         {
             _shiningUnitOfWork.ServiceCategoryRepository.Add(model);
             _shiningUnitOfWork.SaveChanges();
@@ -26,7 +26,7 @@ namespace ShiningBeautySalon.Service.Services
             };
         }
 
-        public IResponse<ServiceCategory> Update(ServiceCategory model)
+        public Response<ServiceCategory> Update(ServiceCategory model)
         {
             _shiningUnitOfWork.ServiceCategoryRepository.Update(model);
             _shiningUnitOfWork.SaveChanges();
@@ -37,7 +37,7 @@ namespace ShiningBeautySalon.Service.Services
             };
         }
 
-        public IResponse<ServiceCategory> Delete(ServiceCategory model)
+        public Response<ServiceCategory> Delete(ServiceCategory model)
         {
             _shiningUnitOfWork.ServiceCategoryRepository.Remove(model);
             _shiningUnitOfWork.SaveChanges();
@@ -48,7 +48,7 @@ namespace ShiningBeautySalon.Service.Services
             };
         }
 
-        public IResponse<List<ServiceCategory>> GetAll()
+        public Response<List<ServiceCategory>> GetAll()
         {
             var response = _shiningUnitOfWork.ServiceCategoryRepository.Get().ToList();
             return new Response<List<ServiceCategory>>
@@ -58,7 +58,7 @@ namespace ShiningBeautySalon.Service.Services
             };
         }
 
-        public IResponse<ServiceCategory> GetByID(int ServiceCategoryId)
+        public Response<ServiceCategory> GetByID(int ServiceCategoryId)
         {
             var response = _shiningUnitOfWork.ServiceCategoryRepository.Find(x => x.ID == ServiceCategoryId).FirstOrDefault();
             return new Response<ServiceCategory>

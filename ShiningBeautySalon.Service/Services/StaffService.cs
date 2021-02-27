@@ -1,9 +1,10 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using ShiningBeautySalon.Core.Model;
+
 using ShiningBeautySalon.DAL.UnitOfWork;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
+using ShiningBeautySalon.Service.Response;
 
 namespace ShiningBeautySalon.Service.Services
 {
@@ -15,7 +16,7 @@ namespace ShiningBeautySalon.Service.Services
             _shiningUnitOfWork = shiningUnitOfWork;
         }
 
-        public IResponse<Staff> Add(Staff model)
+        public Response<Staff> Add(Staff model)
         {
             _shiningUnitOfWork.StaffRepository.Add(model);
             _shiningUnitOfWork.SaveChanges();
@@ -26,7 +27,7 @@ namespace ShiningBeautySalon.Service.Services
             };
         }
 
-        public IResponse<Staff> Update(Staff model)
+        public Response<Staff> Update(Staff model)
         {
             _shiningUnitOfWork.StaffRepository.Update(model);
             _shiningUnitOfWork.SaveChanges();
@@ -37,7 +38,7 @@ namespace ShiningBeautySalon.Service.Services
             };
         }
 
-        public IResponse<Staff> Delete(Staff model)
+        public Response<Staff> Delete(Staff model)
         {
             _shiningUnitOfWork.StaffRepository.Remove(model);
             _shiningUnitOfWork.SaveChanges();
@@ -48,7 +49,7 @@ namespace ShiningBeautySalon.Service.Services
             };
         }
 
-        public IResponse<List<Staff>> GetAll()
+        public Response<List<Staff>> GetAll()
         {
             var response = _shiningUnitOfWork.StaffRepository.Get().ToList();
             return new Response<List<Staff>>
@@ -58,7 +59,7 @@ namespace ShiningBeautySalon.Service.Services
             };
         }
 
-        public IResponse<Staff> GetByID(int staffId)
+        public Response<Staff> GetByID(int staffId)
         {
             var response = _shiningUnitOfWork.StaffRepository.Find(x => x.ID == staffId).FirstOrDefault();
             return new Response<Staff>

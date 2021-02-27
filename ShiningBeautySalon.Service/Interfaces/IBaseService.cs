@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using ShiningBeautySalon.Core.Model;
+﻿using ShiningBeautySalon.Service.Response;
+using System.Collections.Generic;
 
 namespace ShiningBeautySalon.Service.Interfaces
 {
     public interface IBaseService<T>
     {
-        IResponse<List<T>> GetAll();
-        IResponse<T> GetByID(int ID);
-        IResponse<T> Add(T model);
-        IResponse<T> Update(T model);
-        IResponse<T> Delete(T model);
+        Response<List<T>> GetAll();
+        Response<T> GetByID(int ID);
+        Response<T> Add(T model);
+        Response<T> Update(T model);
+        Response<T> Delete(T model);
     }
 }
