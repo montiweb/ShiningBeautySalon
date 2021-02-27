@@ -2,7 +2,6 @@
 
 using Microsoft.AspNetCore.Mvc;
 
-using ShiningBeautySalon.API.Interfaces;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
 
@@ -10,7 +9,7 @@ namespace ShiningBeautySalon.API.Controllers
 {
     [ApiController]
     [Route("[ServiceItem/[action]]")]
-    public class ServiceItemController : ControllerBase, IBaseController<ServiceItem>
+    public class ServiceItemController : ControllerBase
     {
         private readonly IServiceItemService _serviceItemService;
         public ServiceItemController(IServiceItemService serviceItemService)
