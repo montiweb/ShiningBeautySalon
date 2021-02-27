@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-using ShiningBeautySalon.API.Interfaces;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
 
