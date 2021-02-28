@@ -10,8 +10,8 @@ namespace ShiningBeautySalon.Service.Services
 {
     public class StaffService : IStaffService
     {
-        private readonly ShiningUnitOfWork _shiningUnitOfWork;
-        public StaffService(ShiningUnitOfWork shiningUnitOfWork)
+        private readonly UnitOfWork _shiningUnitOfWork;
+        public StaffService(UnitOfWork shiningUnitOfWork)
         {
             _shiningUnitOfWork = shiningUnitOfWork;
         }
@@ -19,7 +19,7 @@ namespace ShiningBeautySalon.Service.Services
         public Response<Staff> Add(Staff model)
         {
             _shiningUnitOfWork.StaffRepository.Add(model);
-            _shiningUnitOfWork.SaveChanges();
+            _shiningUnitOfWork.Commit();
             return new Response<Staff>
             {
                 IsSuccessful = true,
@@ -30,7 +30,7 @@ namespace ShiningBeautySalon.Service.Services
         public Response<Staff> Update(Staff model)
         {
             _shiningUnitOfWork.StaffRepository.Update(model);
-            _shiningUnitOfWork.SaveChanges();
+            _shiningUnitOfWork.Commit();
             return new Response<Staff>
             {
                 IsSuccessful = true,
@@ -41,7 +41,7 @@ namespace ShiningBeautySalon.Service.Services
         public Response<Staff> Delete(Staff model)
         {
             _shiningUnitOfWork.StaffRepository.Remove(model);
-            _shiningUnitOfWork.SaveChanges();
+            _shiningUnitOfWork.Commit();
             return new Response<Staff>
             {
                 IsSuccessful = true,

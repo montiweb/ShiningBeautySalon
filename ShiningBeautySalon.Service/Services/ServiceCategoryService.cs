@@ -9,8 +9,8 @@ namespace ShiningBeautySalon.Service.Services
 {
     public class ServiceCategoryService : IServiceCategoryService
     {
-        private readonly ShiningUnitOfWork _shiningUnitOfWork;
-        public ServiceCategoryService(ShiningUnitOfWork shiningUnitOfWork)
+        private readonly UnitOfWork _shiningUnitOfWork;
+        public ServiceCategoryService(UnitOfWork shiningUnitOfWork)
         {
             _shiningUnitOfWork = shiningUnitOfWork;
         }
@@ -18,7 +18,7 @@ namespace ShiningBeautySalon.Service.Services
         public Response<ServiceCategory> Add(ServiceCategory model)
         {
             _shiningUnitOfWork.ServiceCategoryRepository.Add(model);
-            _shiningUnitOfWork.SaveChanges();
+            _shiningUnitOfWork.Commit();
             return new Response<ServiceCategory>
             {
                 IsSuccessful = true,
@@ -29,7 +29,7 @@ namespace ShiningBeautySalon.Service.Services
         public Response<ServiceCategory> Update(ServiceCategory model)
         {
             _shiningUnitOfWork.ServiceCategoryRepository.Update(model);
-            _shiningUnitOfWork.SaveChanges();
+            _shiningUnitOfWork.Commit();
             return new Response<ServiceCategory>
             {
                 IsSuccessful = true,
@@ -40,7 +40,7 @@ namespace ShiningBeautySalon.Service.Services
         public Response<ServiceCategory> Delete(ServiceCategory model)
         {
             _shiningUnitOfWork.ServiceCategoryRepository.Remove(model);
-            _shiningUnitOfWork.SaveChanges();
+            _shiningUnitOfWork.Commit();
             return new Response<ServiceCategory>
             {
                 IsSuccessful = true,

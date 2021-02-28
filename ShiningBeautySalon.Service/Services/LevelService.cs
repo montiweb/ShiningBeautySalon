@@ -9,8 +9,8 @@ namespace ShiningBeautySalon.Service.Services
 {
     public class LevelService : ILevelService
     {
-        private readonly ShiningUnitOfWork _shiningUnitOfWork;
-        public LevelService(ShiningUnitOfWork shiningUnitOfWork)
+        private readonly UnitOfWork _shiningUnitOfWork;
+        public LevelService(UnitOfWork shiningUnitOfWork)
         {
             _shiningUnitOfWork = shiningUnitOfWork;
         }
@@ -18,7 +18,7 @@ namespace ShiningBeautySalon.Service.Services
         public Response<Level> Add(Level model)
         {
             _shiningUnitOfWork.LevelRepository.Add(model);
-            _shiningUnitOfWork.SaveChanges();
+            _shiningUnitOfWork.Commit();
             return new Response<Level>
             {
                 IsSuccessful = true,
@@ -29,7 +29,7 @@ namespace ShiningBeautySalon.Service.Services
         public Response<Level> Update(Level model)
         {
             _shiningUnitOfWork.LevelRepository.Update(model);
-            _shiningUnitOfWork.SaveChanges();
+            _shiningUnitOfWork.Commit();
             return new Response<Level>
             {
                 IsSuccessful = true,
@@ -40,7 +40,7 @@ namespace ShiningBeautySalon.Service.Services
         public Response<Level> Delete(Level model)
         {
             _shiningUnitOfWork.LevelRepository.Remove(model);
-            _shiningUnitOfWork.SaveChanges();
+            _shiningUnitOfWork.Commit();
             return new Response<Level>
             {
                 IsSuccessful = true,
@@ -67,6 +67,5 @@ namespace ShiningBeautySalon.Service.Services
                 Result = response
             };
         }
-
     }
 }

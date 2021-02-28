@@ -1,21 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ShiningBeautySalon.Core.Repository;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
+using System.Collections.Generic;
+
+using Microsoft.EntityFrameworkCore;
+
+using ShiningBeautySalon.Core.Repository;
 
 namespace ShiningBeautySalon.DAL.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        public readonly DbSet<T> _dbSet;
-        public readonly DbContext _context;
+        private readonly DbSet<T> _dbSet;
+        private readonly DbContext _context;
         public GenericRepository(DbContext context)
         {
-            _dbSet = context.Set<T>();
             _context = context;
+            _dbSet = context.Set<T>();
         }
 
         public IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
@@ -43,9 +44,9 @@ namespace ShiningBeautySalon.DAL.Repository
             }
         }
 
-        public T Get(int id)
+        public T GetByID(object ID)
         {
-            return _dbSet.Find(id);
+            return _dbSet.Find(ID);
         }
 
         public IEnumerable<T> GetAll()
@@ -56,7 +57,6 @@ namespace ShiningBeautySalon.DAL.Repository
         public void Add(T entity)
         {
             _dbSet.Add(entity);
-            _context.Entry(entity).State = EntityState.Added;
         }
 
         public void AddRange(IEnumerable<T> entities)
@@ -69,26 +69,25 @@ namespace ShiningBeautySalon.DAL.Repository
             return _dbSet.Where(predicate);
         }
 
-
         public T FirstOrDefault()
         {
             return _dbSet.SingleOrDefault();
         }
-
+       
         public void Remove(T entity)
         {
+            if (_context.Entry(entity).State == EntityState.Detached)
+            {
+                _dbSet.Attach(entity);
+            }
             _dbSet.Remove(entity);
-            _context.Entry(entity).State = EntityState.Deleted;
         }
 
-        public void RemoveEntity(T entityToDelete)
+        public void Remove(object ID)
         {
-            if (_context.Entry(entityToDelete).State == EntityState.Detached)
-            {
-                _dbSet.Attach(entityToDelete);
-            }
-            _dbSet.Remove(entityToDelete);
-        }
+            T entityToDelete = _dbSet.Find(ID);
+            Remove(entityToDelete);
+        }       
 
         public void RemoveRange(IEnumerable<T> entities)
         {
@@ -100,10 +99,16 @@ namespace ShiningBeautySalon.DAL.Repository
             return _dbSet.Where(predicate).SingleOrDefault();
         }
 
-        public void Update(T entityToUpdate)
+        public void Update(T entity)
         {
-            _dbSet.Attach(entityToUpdate);
-            _context.Entry(entityToUpdate).State = EntityState.Modified;
+            _dbSet.Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public void Update(object ID, T entity)
+        {
+            T entityToUpdtae = _dbSet.Find(ID);
+            Update(entityToUpdtae);
         }
     }
 }

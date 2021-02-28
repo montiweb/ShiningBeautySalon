@@ -1,11 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 using ShiningBeautySalon.Core.Repository;
+using ShiningBeautySalon.Core.UnitOfWork;
 using ShiningBeautySalon.DAL.Context;
 using ShiningBeautySalon.DAL.Repository;
+using ShiningBeautySalon.DAL.UnitOfWork;
 using ShiningBeautySalon.Service.Interfaces;
-using ShiningBeautySalon.Service.Services; 
+using ShiningBeautySalon.Service.Services;
 
 namespace ShiningBeautySalon.DependencyResolver.Ioc
 {
@@ -18,12 +21,13 @@ namespace ShiningBeautySalon.DependencyResolver.Ioc
 
         public static IServiceCollection AddScoped(this IServiceCollection services, IConfiguration configuration)
         {
+            #region Context
+            services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
             services.AddContext<ShiningContext>(configuration.GetConnectionString("DefaultConnection"));
             services.AddScoped<ShiningContext>();
-            services.AddScoped<ShiningContext>();
-
-            #region Repository
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             #endregion
 
             #region Services 

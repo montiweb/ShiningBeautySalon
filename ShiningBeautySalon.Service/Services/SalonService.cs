@@ -10,8 +10,8 @@ namespace ShiningBeautySalon.Service.Services
 {
     public class SalonService : ISalonService
     {
-        private readonly ShiningUnitOfWork _shiningUnitOfWork;
-        public SalonService(ShiningUnitOfWork shiningUnitOfWork)
+        private readonly UnitOfWork _shiningUnitOfWork;
+        public SalonService(UnitOfWork shiningUnitOfWork)
         {
             _shiningUnitOfWork = shiningUnitOfWork;
         }
@@ -19,7 +19,7 @@ namespace ShiningBeautySalon.Service.Services
         public Response<Salon> Add(Salon model)
         {
             _shiningUnitOfWork.SalonRepository.Add(model);
-            _shiningUnitOfWork.SaveChanges();
+            _shiningUnitOfWork.Commit();
             return new Response<Salon>
             {
                 IsSuccessful = true,
@@ -30,7 +30,7 @@ namespace ShiningBeautySalon.Service.Services
         public Response<Salon> Update(Salon model)
         {
             _shiningUnitOfWork.SalonRepository.Update(model);
-            _shiningUnitOfWork.SaveChanges();
+            _shiningUnitOfWork.Commit();
             return new Response<Salon>
             {
                 IsSuccessful = true,
@@ -41,7 +41,7 @@ namespace ShiningBeautySalon.Service.Services
         public Response<Salon> Delete(Salon model)
         {
             _shiningUnitOfWork.SalonRepository.Remove(model);
-            _shiningUnitOfWork.SaveChanges();
+            _shiningUnitOfWork.Commit();
             return new Response<Salon>
             {
                 IsSuccessful = true,

@@ -1,11 +1,11 @@
-﻿using ShiningBeautySalon.Core.Repository;
-using ShiningBeautySalon.Core.UnitOfWork;
+﻿using Microsoft.Extensions.DependencyInjection;
+
+using ShiningBeautySalon.Core.Repository;
 using ShiningBeautySalon.Domain.Entities;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ShiningBeautySalon.DAL.UnitOfWork
 {
-    public partial class ShiningUnitOfWork : IUnitOfWork
+    public partial class UnitOfWork
     {
         #region Repositories
         public IGenericRepository<Level> LevelRepository => _serviceProvider.GetService<IGenericRepository<Level>>();
