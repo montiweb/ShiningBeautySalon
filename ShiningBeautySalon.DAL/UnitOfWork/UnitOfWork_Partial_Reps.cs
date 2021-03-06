@@ -7,11 +7,9 @@ namespace ShiningBeautySalon.DAL.UnitOfWork
 {
     public partial class UnitOfWork
     {
-        #region Repositories
         public IGenericRepository<Level> LevelRepository => _serviceProvider.GetService<IGenericRepository<Level>>();
         public IGenericRepository<Salon> SalonRepository => _serviceProvider.GetService<IGenericRepository<Salon>>();
         public IGenericRepository<Staff> StaffRepository => _serviceProvider.GetService<IGenericRepository<Staff>>();
         public IGenericRepository<ServiceCategory> ServiceCategoryRepository => _serviceProvider.GetService<IGenericRepository<ServiceCategory>>();
-        #endregion
     }
 }

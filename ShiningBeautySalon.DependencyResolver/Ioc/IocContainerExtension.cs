@@ -27,7 +27,6 @@ namespace ShiningBeautySalon.DependencyResolver.Ioc
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             services.AddContext<ShiningContext>(configuration.GetConnectionString("DefaultConnection"));
-            services.AddScoped<ShiningContext>();
             #endregion
 
             #region Services 
