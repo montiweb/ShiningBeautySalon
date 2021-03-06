@@ -6,14 +6,15 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 using ShiningBeautySalon.Core.Repository;
+using ShiningBeautySalon.DAL.Context;
 
 namespace ShiningBeautySalon.DAL.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly DbSet<T> _dbSet;
-        private readonly DbContext _context;
-        public GenericRepository(DbContext context)
+        private readonly ShiningContext _context;
+        public GenericRepository(ShiningContext context)
         {
             _context = context;
             _dbSet = context.Set<T>();
@@ -109,6 +110,10 @@ namespace ShiningBeautySalon.DAL.Repository
         {
             T entityToUpdtae = _dbSet.Find(ID);
             Update(entityToUpdtae);
+        }
+        public void Commit()
+        {
+            _context.SaveChanges();
         }
     }
 }

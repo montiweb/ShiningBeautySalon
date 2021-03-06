@@ -23,5 +23,6 @@ namespace ShiningBeautySalon.Core.Repository
         void Remove(TEntity entity);
         void Remove(object ID);
         void RemoveRange(IEnumerable<TEntity> entities);
+        void Commit();
     }
 }
