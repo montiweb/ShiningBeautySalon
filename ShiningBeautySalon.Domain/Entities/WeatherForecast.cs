@@ -1,6 +1,6 @@
 using System;
 
-namespace ShiningBeautySalon.API
+namespace ShiningBeautySalon.Domain.Entities
 {
     public class WeatherForecast
     {
