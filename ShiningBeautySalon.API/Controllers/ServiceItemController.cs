@@ -8,7 +8,7 @@ using ShiningBeautySalon.Service.Interfaces;
 namespace ShiningBeautySalon.API.Controllers
 {
     [ApiController]
-    [Route("[ServiceItem/[action]]")]
+    [Route("[controller]/[action]")]
     public class ServiceItemController : ControllerBase
     {
         private readonly IServiceItemService _serviceItemService;

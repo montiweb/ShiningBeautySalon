@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using ShiningBeautySalon.Core.Repository;
-using ShiningBeautySalon.Core.UnitOfWork;
 using ShiningBeautySalon.DAL.Context;
 using ShiningBeautySalon.DAL.Repository;
 using ShiningBeautySalon.DAL.UnitOfWork;

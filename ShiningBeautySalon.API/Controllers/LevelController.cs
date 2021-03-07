@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Http;
 
 using ShiningBeautySalon.Domain.Entities;
-using ShiningBeautySalon.Service.Interfaces; 
+using ShiningBeautySalon.Service.Interfaces;
 
 namespace ShiningBeautySalon.API.Controllers
 {
     [ApiController]
-    [Route("[Level/[action]]")]
+    [Route("[controller]/[action]")]
     public class LevelController : ControllerBase
     {
         private readonly ILevelService _levelService;
@@ -20,7 +20,8 @@ namespace ShiningBeautySalon.API.Controllers
         public IActionResult GetAll() => Ok(_levelService.GetAll());
 
         [HttpGet]
-        public IActionResult GetByID(int levelID) {
+        public IActionResult GetByID(int levelID)
+        {
 
             try
             {

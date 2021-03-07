@@ -1,7 +1,6 @@
 ﻿using System;
 
 using ShiningBeautySalon.DAL.Context;
-using ShiningBeautySalon.Core.UnitOfWork;
 
 namespace ShiningBeautySalon.DAL.UnitOfWork
 {

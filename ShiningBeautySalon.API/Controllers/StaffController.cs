@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces; 
 
 namespace ShiningBeautySalon.API.Controllers
 {
     [ApiController]
-    [Route("[Staff/[action]]")]
+    [Route("[controller]/[action]")]
     public class StaffController : ControllerBase
     {
         private readonly IStaffService _staffService;

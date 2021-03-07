@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces; 
 
 namespace ShiningBeautySalon.API.Controllers
 {
     [ApiController]
-    [Route("[ServiceCategory/[action]]")]
+    [Route("[controller]/[action]")]
     public class ServiceCategoryController : ControllerBase
     {
         private readonly IServiceCategoryService _serviceCategoryService;

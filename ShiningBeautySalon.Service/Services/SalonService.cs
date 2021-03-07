@@ -10,8 +10,8 @@ namespace ShiningBeautySalon.Service.Services
 {
     public class SalonService : ISalonService
     {
-        private readonly UnitOfWork _shiningUnitOfWork;
-        public SalonService(UnitOfWork shiningUnitOfWork)
+        private readonly IUnitOfWork _shiningUnitOfWork;
+        public SalonService(IUnitOfWork shiningUnitOfWork)
         {
             _shiningUnitOfWork = shiningUnitOfWork;
         }

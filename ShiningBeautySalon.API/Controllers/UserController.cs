@@ -6,7 +6,7 @@ using ShiningBeautySalon.Service.Interfaces;
 namespace ShiningBeautySalon.API.Controllers
 {
     [ApiController]
-    [Route("[User/[action]]")]
+    [Route("[controller]/[action]")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;

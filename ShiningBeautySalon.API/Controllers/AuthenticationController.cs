@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ShiningBeautySalon.Domain.Entities;
+
 using ShiningBeautySalon.Service.Interfaces;
 
 namespace ShiningBeautySalon.API.Controllers
 {
-
-    [Route("Authentication/[action]")]
-    [ApiController]
     [AllowAnonymous]
+    [ApiController]
+    [Route("[controller]/[action]")]
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthenticationService _authenticationService;

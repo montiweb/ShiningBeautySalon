@@ -9,8 +9,8 @@ namespace ShiningBeautySalon.Service.Services
 {
     public class LevelService : ILevelService
     {
-        private readonly UnitOfWork _shiningUnitOfWork;
-        public LevelService(UnitOfWork shiningUnitOfWork)
+        private readonly IUnitOfWork _shiningUnitOfWork;
+        public LevelService(IUnitOfWork shiningUnitOfWork)
         {
             _shiningUnitOfWork = shiningUnitOfWork;
         }
