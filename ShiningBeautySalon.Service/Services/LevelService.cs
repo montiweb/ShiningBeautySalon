@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ShiningBeautySalon.DAL.UnitOfWork;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
-using ShiningBeautySalon.Service.Response;
+using ShiningBeautySalon.Core.Response;
 
 namespace ShiningBeautySalon.Service.Services
 {
@@ -13,6 +13,25 @@ namespace ShiningBeautySalon.Service.Services
         public LevelService(UnitOfWork shiningUnitOfWork)
         {
             _shiningUnitOfWork = shiningUnitOfWork;
+        }
+        public Response<List<Level>> GetAll()
+        {
+            var response = _shiningUnitOfWork.LevelRepository.Get().ToList();
+            return new Response<List<Level>>
+            {
+                IsSuccessful = true,
+                Result = response
+            };
+        }
+
+        public Response<Level> GetByID(int levelID)
+        {
+            var response = _shiningUnitOfWork.LevelRepository.Find(x => x.ID == levelID).FirstOrDefault();
+            return new Response<Level>
+            {
+                IsSuccessful = true,
+                Result = response
+            };
         }
 
         public Response<Level> Add(Level model)
@@ -45,26 +64,6 @@ namespace ShiningBeautySalon.Service.Services
             {
                 IsSuccessful = true,
                 Result = model
-            };
-        }
-
-        public Response<List<Level>> GetAll()
-        {
-            var response = _shiningUnitOfWork.LevelRepository.Get().ToList();
-            return new Response<List<Level>>
-            {
-                IsSuccessful = true,
-                Result = response
-            };
-        }
-
-        public Response<Level> GetByID(int levelId)
-        {
-            var response = _shiningUnitOfWork.LevelRepository.Find(x => x.ID == levelId).FirstOrDefault();
-            return new Response<Level>
-            {
-                IsSuccessful = true,
-                Result = response
             };
         }
     }

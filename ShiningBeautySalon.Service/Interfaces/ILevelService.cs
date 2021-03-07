@@ -1,4 +1,5 @@
-﻿using ShiningBeautySalon.Domain.Entities;
+﻿using ShiningBeautySalon.Core.Service;
+using ShiningBeautySalon.Domain.Entities;
 
 namespace ShiningBeautySalon.Service.Interfaces
 {

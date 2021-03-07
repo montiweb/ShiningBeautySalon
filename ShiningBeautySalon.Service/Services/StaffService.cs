@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 
 using ShiningBeautySalon.DAL.UnitOfWork;
+using ShiningBeautySalon.Core.Response;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
-using ShiningBeautySalon.Service.Response;
 
 namespace ShiningBeautySalon.Service.Services
 {
@@ -14,6 +14,26 @@ namespace ShiningBeautySalon.Service.Services
         public StaffService(UnitOfWork shiningUnitOfWork)
         {
             _shiningUnitOfWork = shiningUnitOfWork;
+        }
+
+        public Response<List<Staff>> GetAll()
+        {
+            var response = _shiningUnitOfWork.StaffRepository.Get().ToList();
+            return new Response<List<Staff>>
+            {
+                IsSuccessful = true,
+                Result = response
+            };
+        }
+
+        public Response<Staff> GetByID(int staffID)
+        {
+            var response = _shiningUnitOfWork.StaffRepository.Find(x => x.ID == staffID).FirstOrDefault();
+            return new Response<Staff>
+            {
+                IsSuccessful = true,
+                Result = response
+            };
         }
 
         public Response<Staff> Add(Staff model)
@@ -49,24 +69,6 @@ namespace ShiningBeautySalon.Service.Services
             };
         }
 
-        public Response<List<Staff>> GetAll()
-        {
-            var response = _shiningUnitOfWork.StaffRepository.Get().ToList();
-            return new Response<List<Staff>>
-            {
-                IsSuccessful = true,
-                Result = response
-            };
-        }
-
-        public Response<Staff> GetByID(int staffId)
-        {
-            var response = _shiningUnitOfWork.StaffRepository.Find(x => x.ID == staffId).FirstOrDefault();
-            return new Response<Staff>
-            {
-                IsSuccessful = true,
-                Result = response
-            };
-        }
+       
     }
 }
