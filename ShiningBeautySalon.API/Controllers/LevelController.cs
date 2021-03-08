@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
+using System.Collections.Generic;
 
 namespace ShiningBeautySalon.API.Controllers
 {
@@ -17,10 +18,10 @@ namespace ShiningBeautySalon.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll() => Ok(_levelService.GetAll());
+        public ActionResult<List<Level>> GetAll() => Ok(_levelService.GetAll());
 
         [HttpGet]
-        public IActionResult GetByID(int levelID)
+        public ActionResult<Level> GetByID(int levelID)
         {
 
             try
@@ -37,12 +38,12 @@ namespace ShiningBeautySalon.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Level model) => Ok(_levelService.Add(model));
+        public ActionResult<Level> Add(Level model) => Ok(_levelService.Add(model));
 
         [HttpPost]
-        public IActionResult Update(Level model) => Ok(_levelService.Update(model));
+        public ActionResult<Level> Update(Level model) => Ok(_levelService.Update(model));
 
         [HttpPost]
-        public IActionResult Delete(Level model) => Ok(_levelService.Delete(model));
+        public ActionResult<Level> Delete(Level model) => Ok(_levelService.Delete(model));
     }
 }

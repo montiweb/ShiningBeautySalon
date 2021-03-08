@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 
 using ShiningBeautySalon.DAL.UnitOfWork;
-using ShiningBeautySalon.Core.Response;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
 
@@ -16,57 +15,39 @@ namespace ShiningBeautySalon.Service.Services
             _shiningUnitOfWork = shiningUnitOfWork;
         }
 
-        public Response<List<Salon>> GetAll()
+        public List<Salon> GetAll()
         {
-            var response = _shiningUnitOfWork.SalonRepository.Get().ToList();
-            return new Response<List<Salon>>
-            {
-                IsSuccessful = true,
-                Result = response
-            };
+            return _shiningUnitOfWork.SalonRepository.Get().ToList();
         }
 
-        public Response<Salon> GetByID(int salonID)
+        public Salon GetByID(int salonID)
         {
-            var response = _shiningUnitOfWork.SalonRepository.Find(x => x.ID == salonID).FirstOrDefault();
-            return new Response<Salon>
-            {
-                IsSuccessful = true,
-                Result = response
-            };
+            return _shiningUnitOfWork.SalonRepository.Find(x => x.ID == salonID).FirstOrDefault();
+             
         }
 
-        public Response<Salon> Add(Salon model)
+        public Salon Add(Salon model)
         {
             _shiningUnitOfWork.SalonRepository.Add(model);
             _shiningUnitOfWork.Commit();
-            return new Response<Salon>
-            {
-                IsSuccessful = true,
-                Result = model
-            };
+            
+            return model;
         }
 
-        public Response<Salon> Update(Salon model)
+        public Salon Update(Salon model)
         {
             _shiningUnitOfWork.SalonRepository.Update(model);
             _shiningUnitOfWork.Commit();
-            return new Response<Salon>
-            {
-                IsSuccessful = true,
-                Result = model
-            };
+            
+            return model;
         }
 
-        public Response<Salon> Delete(Salon model)
+        public Salon Delete(Salon model)
         {
             _shiningUnitOfWork.SalonRepository.Remove(model);
             _shiningUnitOfWork.Commit();
-            return new Response<Salon>
-            {
-                IsSuccessful = true,
-                Result = model
-            };
+            
+            return model;
         }
     }
 }

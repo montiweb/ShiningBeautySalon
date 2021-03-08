@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 
 using ShiningBeautySalon.DAL.UnitOfWork;
-using ShiningBeautySalon.Core.Response;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
 
@@ -16,57 +15,38 @@ namespace ShiningBeautySalon.Service.Services
             _shiningUnitOfWork = shiningUnitOfWork;
         }
 
-        public Response<List<Staff>> GetAll()
+        public List<Staff> GetAll()
         {
-            var response = _shiningUnitOfWork.StaffRepository.Get().ToList();
-            return new Response<List<Staff>>
-            {
-                IsSuccessful = true,
-                Result = response
-            };
+            return _shiningUnitOfWork.StaffRepository.Get().ToList();
         }
 
-        public Response<Staff> GetByID(int staffID)
+        public Staff GetByID(int staffID)
         {
-            var response = _shiningUnitOfWork.StaffRepository.Find(x => x.ID == staffID).FirstOrDefault();
-            return new Response<Staff>
-            {
-                IsSuccessful = true,
-                Result = response
-            };
+            return _shiningUnitOfWork.StaffRepository.Find(x => x.ID == staffID).FirstOrDefault();
         }
 
-        public Response<Staff> Add(Staff model)
+        public Staff Add(Staff model)
         {
             _shiningUnitOfWork.StaffRepository.Add(model);
             _shiningUnitOfWork.Commit();
-            return new Response<Staff>
-            {
-                IsSuccessful = true,
-                Result = model
-            };
+           
+            return model;
         }
 
-        public Response<Staff> Update(Staff model)
+        public Staff Update(Staff model)
         {
             _shiningUnitOfWork.StaffRepository.Update(model);
             _shiningUnitOfWork.Commit();
-            return new Response<Staff>
-            {
-                IsSuccessful = true,
-                Result = model
-            };
+            
+            return model;
         }
 
-        public Response<Staff> Delete(Staff model)
+        public Staff Delete(Staff model)
         {
             _shiningUnitOfWork.StaffRepository.Remove(model);
             _shiningUnitOfWork.Commit();
-            return new Response<Staff>
-            {
-                IsSuccessful = true,
-                Result = model
-            };
+            
+            return model;
         }
 
        

@@ -36,6 +36,7 @@ namespace ShiningBeautySalon.API
             services.AddTransient(_congiguration);
             services.AddScoped(_congiguration);
             services.AddSingleton(_congiguration);
+            services.AddControllers().AddXmlSerializerFormatters();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

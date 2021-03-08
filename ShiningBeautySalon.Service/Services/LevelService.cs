@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using ShiningBeautySalon.DAL.UnitOfWork;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
-using ShiningBeautySalon.Core.Response;
 
 namespace ShiningBeautySalon.Service.Services
 {
@@ -14,57 +13,38 @@ namespace ShiningBeautySalon.Service.Services
         {
             _shiningUnitOfWork = shiningUnitOfWork;
         }
-        public Response<List<Level>> GetAll()
+        public List<Level> GetAll()
         {
-            var response = _shiningUnitOfWork.LevelRepository.Get().ToList();
-            return new Response<List<Level>>
-            {
-                IsSuccessful = true,
-                Result = response
-            };
+            return _shiningUnitOfWork.LevelRepository.Get().ToList();
         }
 
-        public Response<Level> GetByID(int levelID)
+        public Level GetByID(int levelID)
         {
-            var response = _shiningUnitOfWork.LevelRepository.Find(x => x.ID == levelID).FirstOrDefault();
-            return new Response<Level>
-            {
-                IsSuccessful = true,
-                Result = response
-            };
+            return _shiningUnitOfWork.LevelRepository.Find(x => x.ID == levelID).FirstOrDefault();
         }
 
-        public Response<Level> Add(Level model)
+        public Level Add(Level model)
         {
             _shiningUnitOfWork.LevelRepository.Add(model);
             _shiningUnitOfWork.Commit();
-            return new Response<Level>
-            {
-                IsSuccessful = true,
-                Result = model
-            };
+            
+            return model;
         }
 
-        public Response<Level> Update(Level model)
+        public Level Update(Level model)
         {
             _shiningUnitOfWork.LevelRepository.Update(model);
             _shiningUnitOfWork.Commit();
-            return new Response<Level>
-            {
-                IsSuccessful = true,
-                Result = model
-            };
+           
+            return model;
         }
 
-        public Response<Level> Delete(Level model)
+        public Level Delete(Level model)
         {
             _shiningUnitOfWork.LevelRepository.Remove(model);
             _shiningUnitOfWork.Commit();
-            return new Response<Level>
-            {
-                IsSuccessful = true,
-                Result = model
-            };
+           
+            return model;
         }
     }
 }

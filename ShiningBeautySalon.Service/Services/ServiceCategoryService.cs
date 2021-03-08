@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 
 using ShiningBeautySalon.DAL.UnitOfWork;
-using ShiningBeautySalon.Core.Response;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
 
@@ -16,57 +15,39 @@ namespace ShiningBeautySalon.Service.Services
             _shiningUnitOfWork = shiningUnitOfWork;
         }
 
-        public Response<List<ServiceCategory>> GetAll()
+        public List<ServiceCategory> GetAll()
         {
-            var response = _shiningUnitOfWork.ServiceCategoryRepository.Get().ToList();
-            return new Response<List<ServiceCategory>>
-            {
-                IsSuccessful = true,
-                Result = response
-            };
+            return _shiningUnitOfWork.ServiceCategoryRepository.Get().ToList();
+            
         }
 
-        public Response<ServiceCategory> GetByID(int ServiceCategoryID)
+        public ServiceCategory GetByID(int ServiceCategoryID)
         {
-            var response = _shiningUnitOfWork.ServiceCategoryRepository.Find(x => x.ID == ServiceCategoryID).FirstOrDefault();
-            return new Response<ServiceCategory>
-            {
-                IsSuccessful = true,
-                Result = response
-            };
+            return _shiningUnitOfWork.ServiceCategoryRepository.Find(x => x.ID == ServiceCategoryID).FirstOrDefault();
         }
 
-        public Response<ServiceCategory> Add(ServiceCategory model)
+        public ServiceCategory Add(ServiceCategory model)
         {
             _shiningUnitOfWork.ServiceCategoryRepository.Add(model);
             _shiningUnitOfWork.Commit();
-            return new Response<ServiceCategory>
-            {
-                IsSuccessful = true,
-                Result = model
-            };
+            
+            return model;
         }
 
-        public Response<ServiceCategory> Update(ServiceCategory model)
+        public ServiceCategory Update(ServiceCategory model)
         {
             _shiningUnitOfWork.ServiceCategoryRepository.Update(model);
             _shiningUnitOfWork.Commit();
-            return new Response<ServiceCategory>
-            {
-                IsSuccessful = true,
-                Result = model
-            };
+            
+            return model;
         }
 
-        public Response<ServiceCategory> Delete(ServiceCategory model)
+        public ServiceCategory Delete(ServiceCategory model)
         {
             _shiningUnitOfWork.ServiceCategoryRepository.Remove(model);
             _shiningUnitOfWork.Commit();
-            return new Response<ServiceCategory>
-            {
-                IsSuccessful = true,
-                Result = model
-            };
+            
+            return model;
         }
      
     }

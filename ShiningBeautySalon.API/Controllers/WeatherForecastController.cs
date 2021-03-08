@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 
 using ShiningBeautySalon.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ShiningBeautySalon.API.Controllers
 {
@@ -16,8 +18,9 @@ namespace ShiningBeautySalon.API.Controllers
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
+        private List<WeatherForecast> result;
 
-        // // 1- IEnumerable
+        //// 1- IEnumerable
         //[HttpGet]
         //public IEnumerable<WeatherForecast> Get()
         //{
@@ -86,6 +89,24 @@ namespace ShiningBeautySalon.API.Controllers
 
         ////  5- IActionResult by return StatusCode()
         //[HttpGet]
+        //public ActionResult Get()
+        //{
+        //    var rng = new Random();
+        //    var result = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        //    {
+        //        Date = DateTime.Now.AddDays(index),
+        //        TemperatureC = rng.Next(-20, 55),
+        //        Summary = Summaries[rng.Next(Summaries.Length)]
+        //    })
+        //    .ToArray();
+
+        //  //  Response.StatusCode = StatusCodes.Status400BadRequest;
+
+        //    return StatusCode(StatusCodes.Status200OK, result);
+        //}
+
+        //// 6- IActionResult by return StatusCode(new JsonResult)
+        //[HttpGet]
         //public IActionResult Get()
         //{
         //    var rng = new Random();
@@ -99,25 +120,45 @@ namespace ShiningBeautySalon.API.Controllers
 
         //    Response.StatusCode = StatusCodes.Status400BadRequest;
 
-        //    return StatusCode(StatusCodes.Status500InternalServerError, result);
+        //    return StatusCode(StatusCodes.Status500InternalServerError,new JsonResult(result));
         //}
 
-        // 6- IActionResult by return StatusCode(new JsonResult)
+
+        ////  7- ActionResult by list of a custome defined type and return StatusCode()
+        //[HttpGet]
+        //public ActionResult<List<WeatherForecast>> Get()
+        //{
+        //    var rng = new Random();
+        //    var result = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        //    {
+        //        Date = DateTime.Now.AddDays(index),
+        //        TemperatureC = rng.Next(-20, 55),
+        //        Summary = Summaries[rng.Next(Summaries.Length)]
+        //    })
+        //   .ToList();
+
+        //    return StatusCode(StatusCodes.Status200OK, result);
+        //}
+
+        //  8- ActionResult by list of a custome defined type and return StatusCode()
         [HttpGet]
-        public IActionResult Get()
+        public async Task<ActionResult<List<WeatherForecast>>> Get()
         {
-            var rng = new Random();
-            var result = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            //List<WeatherForecast> result = new List<WeatherForecast>();
+
+            await Task.Run(() =>
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+                var rng = new Random();
+                result = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+                {
+                    Date = DateTime.Now.AddDays(index),
+                    TemperatureC = rng.Next(-20, 55),
+                    Summary = Summaries[rng.Next(Summaries.Length)]
+                })
+               .ToList();
+            });
 
-            Response.StatusCode = StatusCodes.Status400BadRequest;
-
-            return StatusCode(StatusCodes.Status500InternalServerError,new JsonResult(result));
+            return StatusCode(StatusCodes.Status200OK, result);
         }
     }
 }

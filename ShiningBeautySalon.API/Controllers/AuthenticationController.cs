@@ -15,8 +15,5 @@ namespace ShiningBeautySalon.API.Controllers
         {
             _authenticationService = authenticationService;
         }
-
-        //[HttpPost]
-        //public ActionResult<User> Login(string username, string password) => _authenticationService.Login(username, password);
     }
 }
