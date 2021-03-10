@@ -20,7 +20,7 @@ namespace ShiningBeautySalon.API.Controllers
         [HttpGet]
         public ActionResult<List<Level>> GetAll() => Ok(_levelService.GetAll());
 
-        [HttpGet]
+        [HttpGet("{levelID}")]
         public ActionResult<Level> GetByID(int levelID)
         {
 
