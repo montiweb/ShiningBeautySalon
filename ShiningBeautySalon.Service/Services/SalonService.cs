@@ -16,28 +16,14 @@ namespace ShiningBeautySalon.Service.Services
             _shiningUnitOfWork = shiningUnitOfWork;
         }
 
-        public async Task<List<Salon>> GetAll()
+        public  List<Salon> GetAll()
         {
-            List<Salon> _levelList = new List<Salon>();
-
-            await Task.Run(() =>
-            {
-                _levelList = _shiningUnitOfWork.SalonRepository.Get().ToList();
-            });
-
-            return _levelList;
+            return _shiningUnitOfWork.SalonRepository.GetAll().ToList(); 
         }
 
-        public async Task<Salon> GetByID(int salonID)
+        public  Salon GetByID(int salonID)
         {
-            Salon _level = new Salon();
-
-            await Task.Run(() =>
-            {
-                _level = _shiningUnitOfWork.SalonRepository.Find(x => x.ID == salonID).FirstOrDefault();
-            });
-
-            return _level;
+            return _shiningUnitOfWork.SalonRepository.Find(x => x.ID == salonID).FirstOrDefault(); 
         }
 
         public Salon Add(Salon model)
