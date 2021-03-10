@@ -20,6 +20,16 @@ namespace ShiningBeautySalon.DAL.Repository
             _dbSet = context.Set<T>();
         }
 
+        public IEnumerable<T> GetAll()
+        {
+            return _dbSet.ToList();
+        }
+
+        public T GetByID(object ID)
+        {
+            return _dbSet.Find(ID);
+        }
+
         public IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
         {
             IQueryable<T> query = _dbSet;
@@ -43,16 +53,6 @@ namespace ShiningBeautySalon.DAL.Repository
             {
                 return query.ToList();
             }
-        }
-
-        public T GetByID(object ID)
-        {
-            return _dbSet.Find(ID);
-        }
-
-        public IEnumerable<T> GetAll()
-        {
-            return _dbSet.ToList();
         }
 
         public void Add(T entity)
