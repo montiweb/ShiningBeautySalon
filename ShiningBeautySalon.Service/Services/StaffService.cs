@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ShiningBeautySalon.DAL.UnitOfWork;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
+using System.Threading.Tasks;
 
 namespace ShiningBeautySalon.Service.Services
 {
@@ -15,14 +16,28 @@ namespace ShiningBeautySalon.Service.Services
             _shiningUnitOfWork = shiningUnitOfWork;
         }
 
-        public List<Staff> GetAll()
+        public async Task<List<Staff>> GetAll()
         {
-            return _shiningUnitOfWork.StaffRepository.Get().ToList();
-        }
+            List<Staff> _levelList = new List<Staff>();
 
-        public Staff GetByID(int staffID)
+            await Task.Run(() =>
+            {
+                _levelList = _shiningUnitOfWork.StaffRepository.Get().ToList();
+            });
+
+            return _levelList;
+        }
+      
+        public async Task<Staff> GetByID(int staffID)
         {
-            return _shiningUnitOfWork.StaffRepository.Find(x => x.ID == staffID).FirstOrDefault();
+            Staff _level = new Staff();
+
+            await Task.Run(() =>
+            {
+                _level = _shiningUnitOfWork.StaffRepository.Find(x => x.ID == staffID).FirstOrDefault();
+            });
+
+            return _level;
         }
 
         public Staff Add(Staff model)

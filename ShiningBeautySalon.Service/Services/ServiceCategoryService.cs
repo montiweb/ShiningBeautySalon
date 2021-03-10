@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ShiningBeautySalon.DAL.UnitOfWork;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
+using System.Threading.Tasks;
 
 namespace ShiningBeautySalon.Service.Services
 {
@@ -15,15 +16,28 @@ namespace ShiningBeautySalon.Service.Services
             _shiningUnitOfWork = shiningUnitOfWork;
         }
 
-        public List<ServiceCategory> GetAll()
+        public async Task<List<ServiceCategory>> GetAll()
         {
-            return _shiningUnitOfWork.ServiceCategoryRepository.Get().ToList();
-            
+            List<ServiceCategory> _levelList = new List<ServiceCategory>();
+
+            await Task.Run(() =>
+            {
+                _levelList = _shiningUnitOfWork.ServiceCategoryRepository.Get().ToList();
+            });
+
+            return _levelList;
         }
 
-        public ServiceCategory GetByID(int ServiceCategoryID)
+        public async Task<ServiceCategory> GetByID(int ServiceCategoryID)
         {
-            return _shiningUnitOfWork.ServiceCategoryRepository.Find(x => x.ID == ServiceCategoryID).FirstOrDefault();
+            ServiceCategory _level = new ServiceCategory();
+
+            await Task.Run(() =>
+            {
+                _level = _shiningUnitOfWork.ServiceCategoryRepository.Find(x => x.ID == ServiceCategoryID).FirstOrDefault();
+            });
+
+            return _level;
         }
 
         public ServiceCategory Add(ServiceCategory model)

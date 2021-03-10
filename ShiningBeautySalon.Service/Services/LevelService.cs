@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ShiningBeautySalon.DAL.UnitOfWork;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
+using System.Threading.Tasks;
 
 namespace ShiningBeautySalon.Service.Services
 {
@@ -13,21 +14,35 @@ namespace ShiningBeautySalon.Service.Services
         {
             _shiningUnitOfWork = shiningUnitOfWork;
         }
-        public List<Level> GetAll()
+        public async Task<List<Level>> GetAll()
         {
-            return _shiningUnitOfWork.LevelRepository.Get().ToList();
+            List<Level> _levelList = new List<Level>();
+
+            await Task.Run(() =>
+            {
+                _levelList = _shiningUnitOfWork.LevelRepository.Get().ToList();
+            });
+            
+            return _levelList;
         }
 
-        public Level GetByID(int levelID)
+        public async Task<Level> GetByID(int levelID)
         {
-            return _shiningUnitOfWork.LevelRepository.Find(x => x.ID == levelID).FirstOrDefault();
+            Level _level = new Level();
+
+            await Task.Run(() =>
+            {
+                _level = _shiningUnitOfWork.LevelRepository.Find(x => x.ID == levelID).FirstOrDefault();
+            });
+
+            return _level;
         }
 
         public Level Add(Level model)
         {
             _shiningUnitOfWork.LevelRepository.Add(model);
             _shiningUnitOfWork.Commit();
-            
+
             return model;
         }
 
@@ -35,7 +50,7 @@ namespace ShiningBeautySalon.Service.Services
         {
             _shiningUnitOfWork.LevelRepository.Update(model);
             _shiningUnitOfWork.Commit();
-           
+
             return model;
         }
 
@@ -43,7 +58,7 @@ namespace ShiningBeautySalon.Service.Services
         {
             _shiningUnitOfWork.LevelRepository.Remove(model);
             _shiningUnitOfWork.Commit();
-           
+
             return model;
         }
     }
