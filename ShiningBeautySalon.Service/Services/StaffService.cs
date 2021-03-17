@@ -16,9 +16,9 @@ namespace ShiningBeautySalon.Service.Services
             _shiningUnitOfWork = shiningUnitOfWork;
         }
 
-        public List<Staff> GetAll()
+        public IQueryable<Staff> GetAll()
         {
-            return _shiningUnitOfWork.StaffRepository.GetAll().ToList();
+            return _shiningUnitOfWork.StaffRepository.GetAll();
         }
       
         public Staff GetByID(int staffID)

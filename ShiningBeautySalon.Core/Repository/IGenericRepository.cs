@@ -2,27 +2,24 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ShiningBeautySalon.Core.Repository
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-        IEnumerable<TEntity> GetAll();
-        TEntity GetByID(object ID);
-        IEnumerable<TEntity> Get(
+        IQueryable<TEntity> GetAll();
+        Task<IEnumerable<TEntity>> Get(
            Expression<Func<TEntity, bool>> filter = null,
            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
            string includeProperties = "");
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
-        TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
-        TEntity FirstOrDefault();
+        Task<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        void Save(TEntity entity);
         void Add(TEntity entity);
-        void AddRange(IEnumerable<TEntity> entities);
-        void Update(TEntity entity);
-        void Update(object ID, TEntity entity);
+        void AddRange(IEnumerable<TEntity> entityList);
         void Remove(TEntity entity);
-        void Remove(object ID);
-        void RemoveRange(IEnumerable<TEntity> entities);
-        void Commit();
+        void RemoveRange(IEnumerable<TEntity> entityList);
+        void Update(TEntity entity);
+        void RepositoryCommit();
     }
 }

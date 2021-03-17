@@ -7,36 +7,37 @@ using Microsoft.EntityFrameworkCore;
 
 using ShiningBeautySalon.Core.Repository;
 using ShiningBeautySalon.DAL.Context;
+using System.Threading.Tasks;
 
 namespace ShiningBeautySalon.DAL.Repository
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-        private readonly DbSet<T> _dbSet;
         private readonly ShiningContext _context;
+        private readonly DbSet<TEntity> _dbSet;
+
         public GenericRepository(ShiningContext context)
         {
             _context = context;
-            _dbSet = context.Set<T>();
+            _dbSet = context.Set<TEntity>();
         }
 
-        public IEnumerable<T> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
-            return _dbSet.ToList();
+            return _context.Set<TEntity>().AsQueryable();
         }
 
-        public T GetByID(object ID)
+        public async Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
-            return _dbSet.Find(ID);
-        }
-
-        public IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
-        {
-            IQueryable<T> query = _dbSet;
+            IQueryable<TEntity> query;
 
             if (filter != null)
             {
-                query = query.Where(filter);
+                query = GetAll().Where(filter);
+            }
+            else
+            {
+                query = GetAll();
             }
 
             foreach (var includeProperty in includeProperties.Split
@@ -47,73 +48,64 @@ namespace ShiningBeautySalon.DAL.Repository
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                return await orderBy(query).ToListAsync();
             }
             else
             {
-                return query.ToList();
+                return await query.ToListAsync();
             }
         }
 
-        public void Add(T entity)
+        public async Task<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            _dbSet.Add(entity);
+            return await GetAll().Where(predicate).FirstOrDefaultAsync();
         }
 
-        public void AddRange(IEnumerable<T> entities)
+        public void Save(TEntity entity)
         {
-            _dbSet.AddRange(entities);
+            switch (_context.Entry(entity).State)
+            {
+                case EntityState.Detached:
+                    _dbSet.Add(entity);
+                    break;
+                case EntityState.Modified:
+                    _dbSet.Update(entity);
+                    break;
+                case EntityState.Added:
+                    _dbSet.Add(entity);
+                    break;
+                case EntityState.Unchanged:
+                    //item already in db no need to do anything  
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
-        {
-            return _dbSet.Where(predicate);
-        }
+        public void Add(TEntity entity) => _dbSet.Add(entity);
 
-        public T FirstOrDefault()
-        {
-            return _dbSet.SingleOrDefault();
-        }
-       
-        public void Remove(T entity)
+        public void AddRange(IEnumerable<TEntity> entityList) => _dbSet.AddRange(entityList);
+
+        public void Remove(TEntity entity)
         {
             if (_context.Entry(entity).State == EntityState.Detached)
             {
                 _dbSet.Attach(entity);
             }
+
             _dbSet.Remove(entity);
         }
 
-        public void Remove(object ID)
-        {
-            T entityToDelete = _dbSet.Find(ID);
-            Remove(entityToDelete);
-        }       
+        public void RemoveRange(IEnumerable<TEntity> entityList) => _dbSet.RemoveRange(entityList);
 
-        public void RemoveRange(IEnumerable<T> entities)
-        {
-            _dbSet.RemoveRange(entities);
-        }
-
-        public T SingleOrDefault(Expression<Func<T, bool>> predicate)
-        {
-            return _dbSet.Where(predicate).SingleOrDefault();
-        }
-
-        public void Update(T entity)
+        public void Update(TEntity entity)
         {
             _dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
         }
 
-        public void Update(object ID, T entity)
-        {
-            T entityToUpdtae = _dbSet.Find(ID);
-            Update(entityToUpdtae);
-        }
-        public void Commit()
-        {
-            _context.SaveChanges();
-        }
+        public async void RepositoryCommit() => await _context.SaveChangesAsync();
+
     }
 }

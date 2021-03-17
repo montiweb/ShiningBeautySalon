@@ -31,9 +31,9 @@ namespace ShiningBeautySalon.DependencyResolver.Ioc
             #region Services 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<ILevelService, LevelService>();
-            services.AddScoped<ISalonService, SalonService>();
-            services.AddScoped<IServiceCategoryService, ServiceCategoryService>();
-            services.AddScoped<IStaffService, StaffService>();
+            //services.AddScoped<ISalonService, SalonService>();
+            //services.AddScoped<IServiceCategoryService, ServiceCategoryService>();
+            //services.AddScoped<IStaffService, StaffService>();
             #endregion
 
             return services;

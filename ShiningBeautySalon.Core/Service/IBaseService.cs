@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ShiningBeautySalon.Core.Service
 {
     public interface IBaseService<TEntity>
     {
-        List<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll();
         TEntity GetByID(int ID);
+        TEntity Save(TEntity model);
         TEntity Add(TEntity model);
         TEntity Update(TEntity model);
         TEntity Delete(TEntity model);

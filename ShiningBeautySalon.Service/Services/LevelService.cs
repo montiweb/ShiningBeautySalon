@@ -1,9 +1,8 @@
-﻿using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
 using ShiningBeautySalon.DAL.UnitOfWork;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
-using System.Threading.Tasks;
 
 namespace ShiningBeautySalon.Service.Services
 {
@@ -14,16 +13,22 @@ namespace ShiningBeautySalon.Service.Services
         {
             _shiningUnitOfWork = shiningUnitOfWork;
         }
-        public  List<Level> GetAll()
-        {
-            return _shiningUnitOfWork.LevelRepository.GetAll().ToList();
-        }
 
-        public  Level GetByID(int levelID)
+        public IEnumerable<Level> GetAll()
         {
-            return _shiningUnitOfWork.LevelRepository.Find(x => x.ID == levelID).FirstOrDefault(); ;
+            return _shiningUnitOfWork.LevelRepository.GetAll();
         }
+        public Level GetByID(int ID)
+        {
+            return _shiningUnitOfWork.LevelRepository.Find(x => x.ID == ID).Result;
+        }
+        public Level Save(Level model)
+        {
+            _shiningUnitOfWork.LevelRepository.Save(model);
+            _shiningUnitOfWork.Commit();
 
+            return model;
+        }
         public Level Add(Level model)
         {
             _shiningUnitOfWork.LevelRepository.Add(model);
@@ -31,7 +36,6 @@ namespace ShiningBeautySalon.Service.Services
 
             return model;
         }
-
         public Level Update(Level model)
         {
             _shiningUnitOfWork.LevelRepository.Update(model);
@@ -39,7 +43,6 @@ namespace ShiningBeautySalon.Service.Services
 
             return model;
         }
-
         public Level Delete(Level model)
         {
             _shiningUnitOfWork.LevelRepository.Remove(model);

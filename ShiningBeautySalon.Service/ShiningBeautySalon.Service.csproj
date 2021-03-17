@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\SalonService.cs" />
+    <Compile Remove="Services\ServiceCategoryService.cs" />
+    <Compile Remove="Services\StaffService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ShiningBeautySalon.Core\ShiningBeautySalon.Core.csproj" />
     <ProjectReference Include="..\ShiningBeautySalon.DAL\ShiningBeautySalon.DAL.csproj" />
     <ProjectReference Include="..\ShiningBeautySalon.Domain\ShiningBeautySalon.Domain.csproj" />

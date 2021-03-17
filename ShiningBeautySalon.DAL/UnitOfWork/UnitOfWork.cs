@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Threading.Tasks;
 using ShiningBeautySalon.DAL.Context;
 
 namespace ShiningBeautySalon.DAL.UnitOfWork
@@ -15,7 +15,7 @@ namespace ShiningBeautySalon.DAL.UnitOfWork
             _serviceProvider = serviceProvider;
         }
 
-        public void Commit() => _context.SaveChanges();
+        public async void Commit() => await _context.SaveChangesAsync();
 
         public void Dispose() => _context.Dispose();
     }
