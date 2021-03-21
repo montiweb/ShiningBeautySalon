@@ -63,10 +63,14 @@ namespace ShiningBeautySalon.DAL.Repository
 
         public void Save(TEntity Entity)
         {
+            _context.Entry(Entity).State = _context.Entry(Entity).IsKeySet ?
+                                   EntityState.Modified:
+                                   EntityState.Added;
+
             switch (_context.Entry(Entity).State)
             {
                 case EntityState.Detached:
-                    _dbSet.Add(Entity);
+                     _dbSet.Add(Entity);
                     break;
                 case EntityState.Modified:
                     _dbSet.Update(Entity);
