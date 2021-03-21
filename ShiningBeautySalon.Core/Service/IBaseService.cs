@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ShiningBeautySalon.Core.Service
 {
@@ -7,6 +8,7 @@ namespace ShiningBeautySalon.Core.Service
         IEnumerable<TEntity> GetAll();
         TEntity GetByID(int ID);
         TEntity Save(TEntity model);
+        Task<int> SaveAsync(TEntity model);
         TEntity Add(TEntity model);
         TEntity Update(TEntity model);
         TEntity Delete(TEntity model);

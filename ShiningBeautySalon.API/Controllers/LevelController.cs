@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,6 @@ using Microsoft.AspNetCore.Http;
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
 using ShiningBeautySalon.API.MwsBaseController;
-using System.Linq;
 
 namespace ShiningBeautySalon.API.Controllers
 {
@@ -56,17 +56,39 @@ namespace ShiningBeautySalon.API.Controllers
             }
         }
 
+        [ActionName("Save")]
         [HttpPost]
-        public ActionResult<Level> Save(Level model)
+        public ActionResult<Level> Save([FromBody]Level Entity)
         {
             string Level_Entry_Not_Valid = "The level object is not valid";
 
             try
             {
-                if (model == null)
+                if (Entity == null)
                     return StatusCode(StatusCodes.Status400BadRequest, Level_Entry_Not_Valid);
 
-                return StatusCode(StatusCodes.Status200OK, _levelService.Save(model));
+                return StatusCode(StatusCodes.Status200OK, _levelService.Save(Entity));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
+        }
+
+        [ActionName("SaveAsync")]
+        [HttpPost]
+        public ActionResult<Level> SaveAsync([FromBody] Level Entity)
+        {
+            string Level_Entry_Not_Valid = "The level object is not valid";
+
+            try
+            {
+                if (Entity == null)
+                    return StatusCode(StatusCodes.Status400BadRequest, Level_Entry_Not_Valid);
+
+                return _levelService.SaveAsync(Entity).Result > 0
+                    ? StatusCode(StatusCodes.Status200OK, Entity)
+                    : StatusCode(StatusCodes.Status404NotFound, "Not Saved");
             }
             catch (Exception ex)
             {

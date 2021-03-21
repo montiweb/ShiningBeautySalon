@@ -61,18 +61,18 @@ namespace ShiningBeautySalon.DAL.Repository
             return await GetAll().Where(predicate).FirstOrDefaultAsync();
         }
 
-        public void Save(TEntity entity)
+        public void Save(TEntity Entity)
         {
-            switch (_context.Entry(entity).State)
+            switch (_context.Entry(Entity).State)
             {
                 case EntityState.Detached:
-                    _dbSet.Add(entity);
+                    _dbSet.Add(Entity);
                     break;
                 case EntityState.Modified:
-                    _dbSet.Update(entity);
+                    _dbSet.Update(Entity);
                     break;
                 case EntityState.Added:
-                    _dbSet.Add(entity);
+                    _dbSet.Add(Entity);
                     break;
                 case EntityState.Unchanged:
                     //item already in db no need to do anything  
@@ -105,7 +105,9 @@ namespace ShiningBeautySalon.DAL.Repository
             _context.Entry(entity).State = EntityState.Modified;
         }
 
-        public async void RepositoryCommit() => await _context.SaveChangesAsync();
-
+        public int CommitRepository()
+        {
+            return _context.SaveChanges();
+        }
     }
 }

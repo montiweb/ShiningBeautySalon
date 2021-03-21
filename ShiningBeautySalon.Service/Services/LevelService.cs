@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using ShiningBeautySalon.DAL.UnitOfWork;
 using ShiningBeautySalon.Domain.Entities;
@@ -22,12 +23,17 @@ namespace ShiningBeautySalon.Service.Services
         {
             return _shiningUnitOfWork.LevelRepository.Find(x => x.ID == ID).Result;
         }
-        public Level Save(Level model)
+        public Level Save(Level Entity)
         {
-            _shiningUnitOfWork.LevelRepository.Save(model);
+            _shiningUnitOfWork.LevelRepository.Save(Entity);
             _shiningUnitOfWork.Commit();
 
-            return model;
+            return Entity;
+        }
+        public async Task<int> SaveAsync(Level Entity)
+        {
+            _shiningUnitOfWork.LevelRepository.Save(Entity);
+            return await _shiningUnitOfWork.CommitAsync();
         }
         public Level Add(Level model)
         {
