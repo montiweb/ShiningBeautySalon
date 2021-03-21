@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\SalonController.cs" />
+    <Compile Remove="Controllers\ServiceCategoryController.cs" />
+    <Compile Remove="Controllers\StaffController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ShiningBeautySalon.DAL\ShiningBeautySalon.DAL.csproj" />
     <ProjectReference Include="..\ShiningBeautySalon.DependencyResolver\ShiningBeautySalon.DependencyResolver.csproj" />
     <ProjectReference Include="..\ShiningBeautySalon.Service\ShiningBeautySalon.Service.csproj" />

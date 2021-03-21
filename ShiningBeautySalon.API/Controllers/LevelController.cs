@@ -97,21 +97,21 @@ namespace ShiningBeautySalon.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Level> Add(Level model)
+        public ActionResult<Level> Delete(Level Entity)
         {
-            return Ok(_levelService.Add(model));
-        }
+            string Level_Entry_Not_Valid = "The level object is not valid";
 
-        [HttpPost]
-        public ActionResult<Level> Update(Level model)
-        {
-            return Ok(_levelService.Update(model));
-        }
+            try
+            {
+                if (Entity == null)
+                    return StatusCode(StatusCodes.Status400BadRequest, Level_Entry_Not_Valid);
 
-        [HttpPost]
-        public ActionResult<Level> Delete(Level model)
-        {
-            return Ok(_levelService.Delete(model));
+                return StatusCode(StatusCodes.Status200OK, _levelService.Delete(Entity));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
         }
     }
 }

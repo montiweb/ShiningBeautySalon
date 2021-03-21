@@ -15,11 +15,9 @@ namespace ShiningBeautySalon.Core.Repository
            string includeProperties = "");
         Task<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
         void Save(TEntity entity);
-        void Add(TEntity entity);
         void AddRange(IEnumerable<TEntity> entityList);
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entityList);
-        void Update(TEntity entity);
         int CommitRepository();
     }
 }

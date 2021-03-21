@@ -63,15 +63,17 @@ namespace ShiningBeautySalon.DAL.Repository
 
         public void Save(TEntity Entity)
         {
+            if (_context.Entry(Entity).State == EntityState.Detached)
+            {
+                _dbSet.Attach(Entity);
+            }
+
             _context.Entry(Entity).State = _context.Entry(Entity).IsKeySet ?
                                    EntityState.Modified:
                                    EntityState.Added;
 
             switch (_context.Entry(Entity).State)
             {
-                case EntityState.Detached:
-                     _dbSet.Add(Entity);
-                    break;
                 case EntityState.Modified:
                     _dbSet.Update(Entity);
                     break;
@@ -87,27 +89,19 @@ namespace ShiningBeautySalon.DAL.Repository
             }
         }
 
-        public void Add(TEntity entity) => _dbSet.Add(entity);
-
         public void AddRange(IEnumerable<TEntity> entityList) => _dbSet.AddRange(entityList);
 
-        public void Remove(TEntity entity)
+        public void Remove(TEntity Entity)
         {
-            if (_context.Entry(entity).State == EntityState.Detached)
+            if (_context.Entry(Entity).State == EntityState.Detached)
             {
-                _dbSet.Attach(entity);
+                _dbSet.Attach(Entity);
             }
 
-            _dbSet.Remove(entity);
+            _dbSet.Remove(Entity);
         }
 
         public void RemoveRange(IEnumerable<TEntity> entityList) => _dbSet.RemoveRange(entityList);
-
-        public void Update(TEntity entity)
-        {
-            _dbSet.Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
-        }
 
         public int CommitRepository()
         {

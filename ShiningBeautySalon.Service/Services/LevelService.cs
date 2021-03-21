@@ -35,26 +35,12 @@ namespace ShiningBeautySalon.Service.Services
             _shiningUnitOfWork.LevelRepository.Save(Entity);
             return await _shiningUnitOfWork.CommitAsync();
         }
-        public Level Add(Level model)
+        public Level Delete(Level Entity)
         {
-            _shiningUnitOfWork.LevelRepository.Add(model);
+            _shiningUnitOfWork.LevelRepository.Remove(Entity);
             _shiningUnitOfWork.Commit();
 
-            return model;
-        }
-        public Level Update(Level model)
-        {
-            _shiningUnitOfWork.LevelRepository.Update(model);
-            _shiningUnitOfWork.Commit();
-
-            return model;
-        }
-        public Level Delete(Level model)
-        {
-            _shiningUnitOfWork.LevelRepository.Remove(model);
-            _shiningUnitOfWork.Commit();
-
-            return model;
+            return Entity;
         }
     }
 }
