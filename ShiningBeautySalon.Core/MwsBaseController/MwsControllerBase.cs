@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ShiningBeautySalon.API.MwsBaseController
+namespace ShiningBeautySalon.Core.MwsBaseController
 {
     [ApiController]
     [Route("api/[controller]/[action]")]

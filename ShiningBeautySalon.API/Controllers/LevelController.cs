@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 
 using ShiningBeautySalon.Domain.Entities;
 using ShiningBeautySalon.Service.Interfaces;
-using ShiningBeautySalon.API.MwsBaseController;
+using ShiningBeautySalon.Core.MwsBaseController;
 
 namespace ShiningBeautySalon.API.Controllers
 {
