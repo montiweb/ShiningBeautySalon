@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Linq.Expressions;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ShiningBeautySalon.Core.Repository
 {
