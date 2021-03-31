@@ -1,5 +1,4 @@
-﻿
-namespace ShiningBeautySalon.Service.Interfaces
+﻿namespace ShiningBeautySalon.Service.Interfaces
 {
     public interface IAuthenticationService
     {
