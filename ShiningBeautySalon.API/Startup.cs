@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 using ShiningBeautySalon.DependencyResolver.Ioc;
 
@@ -46,6 +46,7 @@ namespace ShiningBeautySalon.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseCors(AllowedOrigins);
 
             app.UseHttpsRedirection();
