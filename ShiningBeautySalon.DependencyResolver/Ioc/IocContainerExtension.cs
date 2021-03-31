@@ -2,22 +2,17 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using ShiningBeautySalon.Core.Repository;
 using ShiningBeautySalon.DAL.Context;
 using ShiningBeautySalon.DAL.Repository;
 using ShiningBeautySalon.DAL.UnitOfWork;
-using ShiningBeautySalon.Service.Interfaces;
+using ShiningBeautySalon.Core.Repository;
 using ShiningBeautySalon.Service.Services;
+using ShiningBeautySalon.Service.Interfaces;
 
 namespace ShiningBeautySalon.DependencyResolver.Ioc
 {
     public static class IocContainerExtension
     {
-        public static IServiceCollection AddTransient(this IServiceCollection services, IConfiguration configuration)
-        {
-            return services;
-        }
-
         public static IServiceCollection AddScoped(this IServiceCollection services, IConfiguration configuration)
         {
             #region Context
@@ -36,11 +31,6 @@ namespace ShiningBeautySalon.DependencyResolver.Ioc
             //services.AddScoped<IStaffService, StaffService>();
             #endregion
 
-            return services;
-        }
-
-        public static IServiceCollection AddSingleton(this IServiceCollection services, IConfiguration configuration)
-        {
             return services;
         }
 

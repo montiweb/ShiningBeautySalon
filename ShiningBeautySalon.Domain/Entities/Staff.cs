@@ -1,5 +1,4 @@
-﻿
-namespace ShiningBeautySalon.Domain.Entities
+﻿namespace ShiningBeautySalon.Domain.Entities
 {
     public class Staff
     {
