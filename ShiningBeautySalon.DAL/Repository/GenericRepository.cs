@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Linq.Expressions;
 using System.Collections.Generic;
 
@@ -7,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 
 using ShiningBeautySalon.Core.Repository;
 using ShiningBeautySalon.DAL.Context;
-using System.Threading.Tasks;
 
 namespace ShiningBeautySalon.DAL.Repository
 {

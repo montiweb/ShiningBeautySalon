@@ -18,59 +18,12 @@ namespace ShiningBeautySalon.DAL.UnitOfWork
 
         public int Commit()
         {
-            try
-            {
-                return _context.SaveChanges();
-
-            }
-            catch (Exception exp)
-            {
-                return 2;
-            }
+            return _context.SaveChanges();
         }
 
         public async Task<int> CommitAsync()
         {
-            try
-            {
-                return await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                return 2;
-            }
-
+            return await _context.SaveChangesAsync();
         }
-
-        //private bool disposed = false;
-        //protected virtual void Dispose(bool disposing)
-        //{
-        //    try
-        //    {
-        //        if (!disposed)
-        //        {
-        //            if (disposing)
-        //            {
-        //                _context.Dispose();
-        //            }
-        //        }
-        //        disposed = true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //    }
-
-        //}
-
-        //public void Dispose()
-        //{
-        //    Dispose(true);
-        //    GC.SuppressFinalize(this);
-        //}
-        //public void Dispose()
-        //{
-        //    _context.Dispose();
-        //}
     }
 }

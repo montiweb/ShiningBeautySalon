@@ -1,11 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+
 using ShiningBeautySalon.Core.Repository;
 using ShiningBeautySalon.Domain.Entities;
 
 namespace ShiningBeautySalon.DAL.UnitOfWork
 {
-    public interface IUnitOfWork //: IDisposable
+    public interface IUnitOfWork
     {
         IGenericRepository<Level> LevelRepository { get; }
         IGenericRepository<Salon> SalonRepository { get; }
