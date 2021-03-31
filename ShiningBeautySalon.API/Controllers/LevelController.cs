@@ -95,7 +95,7 @@ namespace ShiningBeautySalon.API.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpDelete]
         public ActionResult<Level> Delete(Level Entity)
         {
             string Level_Entry_Not_Valid = "The level object is not valid";
